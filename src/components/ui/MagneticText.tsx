@@ -70,13 +70,19 @@ export const MagneticText: React.FC<MagneticTextProps> = ({ text, className = ''
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const words = text.split(' ');
+
   return (
     <h2
       ref={containerRef}
-      className={`font-heading font-extrabold tracking-tight select-none ${className}`}
+      className={`font-heading font-extrabold tracking-tight select-none flex flex-wrap gap-x-2.5 sm:gap-x-4 md:gap-x-6 ${className}`}
     >
-      {text.split('').map((char, index) => (
-        <MagneticChar key={index} char={char} mousePos={mousePos} />
+      {words.map((word, wordIndex) => (
+        <span key={wordIndex} className="inline-block whitespace-nowrap">
+          {word.split('').map((char, charIndex) => (
+            <MagneticChar key={charIndex} char={char} mousePos={mousePos} />
+          ))}
+        </span>
       ))}
     </h2>
   );

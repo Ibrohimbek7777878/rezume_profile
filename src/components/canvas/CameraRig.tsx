@@ -43,6 +43,14 @@ export function CameraRig() {
     // 1. Sample desired camera position along CatmullRomCurve3
     positionCurve.getPointAt(clampedProgress, tempPos.current);
 
+    // Adapt position for mobile viewport aspect ratio
+    const aspect = state.viewport.aspect;
+    if (aspect < 1.0) {
+      // Narrow portrait screen: pull camera closer to center and adjust distance
+      tempPos.current.x *= Math.max(0.3, aspect * 0.8);
+      tempPos.current.z *= Math.min(1.35, 1.0 + (1.0 - aspect) * 0.3);
+    }
+
     // 2. Smoothly damp camera position with frame-rate independent lerp
     const lerpFactor = 1 - Math.exp(-5.5 * delta);
     state.camera.position.lerp(tempPos.current, lerpFactor);

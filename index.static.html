@@ -1,0 +1,3440 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ibrohim Sultonov — Senior Full Stack Developer | Portfolio & CV</title>
+  
+  <!-- SEO & Open Graph Meta -->
+  <meta name="description" content="Ibrohim Sultonov — Full Stack Developer (Node.js, Python, Django, React, Next.js, PostgreSQL, Android). Sirdaryo, Uzbekistan.">
+  <meta name="author" content="Ibrohim Sultonov">
+  <meta name="keywords" content="Ibrohim Sultonov, Full Stack Developer, Node.js, Python, Django, PostgreSQL, React, Next.js, Android, ERP, WebGL, Portfolio">
+  <meta property="og:title" content="Ibrohim Sultonov — Full Stack Developer">
+  <meta property="og:description" content="Full Stack Developer with 2+ years of experience. High performance backend, modern web & mobile architectures.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Google Fonts: Inter & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Libraries via CDN: Three.js, GSAP, ScrollTrigger, Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       0. CSS VARIABLES & SYSTEM THEME
+       ========================================================================== */
+    :root {
+      /* Dark Theme (Default) */
+      --bg-base: #0f172a;
+      --bg-surface: #1e293b;
+      --bg-surface-elevated: #273549;
+      --bg-glass: rgba(15, 23, 42, 0.82);
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-glow: rgba(56, 189, 248, 0.35);
+      
+      --border-color: #334155;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      
+      --badge-bg: #1e293b;
+      --badge-text: #e2e8f0;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 16px 40px -8px rgba(0, 0, 0, 0.45);
+      
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Manrope', 'Inter', sans-serif;
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-base: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --bg-glass: rgba(248, 250, 252, 0.88);
+      
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+      
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --accent-soft: rgba(2, 132, 199, 0.1);
+      --accent-glow: rgba(2, 132, 199, 0.25);
+      
+      --border-color: #e2e8f0;
+      --border-subtle: rgba(15, 23, 42, 0.06);
+      
+      --badge-bg: #f1f5f9;
+      --badge-text: #1e293b;
+      
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 16px 40px -8px rgba(15, 23, 42, 0.12);
+    }
+
+    /* ==========================================================================
+       1. BASE RESET & ACCESSIBILITY
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: initial; /* Lenis handles smooth scrolling */
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #0f172a;
+    }
+
+    /* WebGL Canvas Background */
+    #webgl-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* Skip Link for Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 1.5rem;
+      background: var(--accent);
+      color: #0f172a;
+      padding: 0.6rem 1.2rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      z-index: 10000;
+      transition: top 0.25s ease;
+      text-decoration: none;
+    }
+    .skip-link:focus {
+      top: 1.5rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Top Scroll Progress Indicator */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #60a5fa, #38bdf8);
+      z-index: 1001;
+      pointer-events: none;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    /* ==========================================================================
+       2. PRELOADER ANIMATION
+       ========================================================================== */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+      pointer-events: all;
+      overflow: hidden;
+    }
+
+    .preloader-shutter {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: #090d16;
+      z-index: 1;
+      transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+    }
+    .preloader-shutter-top {
+      top: 0;
+      transform-origin: top;
+    }
+    .preloader-shutter-bottom {
+      bottom: 0;
+      transform-origin: bottom;
+    }
+
+    .preloader-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .preloader-badge-3d {
+      width: 88px;
+      height: 88px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.9));
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      box-shadow: 0 0 40px var(--accent-glow);
+      transform-style: preserve-3d;
+      animation: emblemRotate 3s infinite linear;
+    }
+
+    @keyframes emblemRotate {
+      0% { transform: perspective(400px) rotateY(0deg); }
+      100% { transform: perspective(400px) rotateY(360deg); }
+    }
+
+    .preloader-bar-wrap {
+      width: 240px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .preloader-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      border-radius: var(--radius-full);
+    }
+
+    .preloader-percent {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================================================
+       3. CUSTOM MOUSE CURSOR
+       ========================================================================== */
+    .cursor-dot, .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 99999;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease, transform 0.15s ease, background 0.3s ease, width 0.3s ease, height 0.3s ease;
+    }
+
+    .cursor-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .cursor-ring {
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      mix-blend-mode: difference;
+    }
+
+    .cursor-ring.active {
+      width: 64px;
+      height: 64px;
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.15);
+      backdrop-filter: blur(2px);
+    }
+
+    @media (pointer: coarse) {
+      .cursor-dot, .cursor-ring {
+        display: none !important;
+      }
+    }
+
+    /* ==========================================================================
+       4. NAVIGATION & HEADER
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .site-header.nav-hidden {
+      transform: translateY(-100%);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 2px 14px var(--accent-glow);
+      transition: transform 0.3s var(--transition-smooth);
+    }
+    .logo:hover .logo-badge {
+      transform: rotate(8deg) scale(1.06);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 0.925rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 0.5rem 0.25rem;
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s var(--transition-smooth);
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-link.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-tools {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .lang-btn:hover {
+      color: var(--text-main);
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #0f172a;
+      box-shadow: 0 1px 6px var(--accent-glow);
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle-btn, .mobile-toggle-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .theme-toggle-btn:hover, .mobile-toggle-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .theme-icon-sun { display: none; }
+    .theme-icon-moon { display: block; }
+    [data-theme="light"] .theme-icon-sun { display: block; }
+    [data-theme="light"] .theme-icon-moon { display: none; }
+
+    .mobile-toggle-btn {
+      display: none;
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 74px;
+      left: 0;
+      width: 100vw;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .mobile-drawer.open {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer .nav-menu {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .mobile-drawer .nav-link {
+      font-size: 1.15rem;
+      padding: 0.5rem 0;
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       5. HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      min-height: calc(100vh - 74px);
+      display: flex;
+      align-items: center;
+      padding: 4rem 0 3rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      align-items: center;
+      gap: 3.5rem;
+      width: 100%;
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      background: var(--accent-soft);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      animation: pulseGreen 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    .hero-name {
+      font-family: var(--font-heading);
+      font-size: 3.6rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title-badge {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-location-chip {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-surface);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+    }
+
+    .hero-slogan {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Magnetic & Interactive Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.85rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      transition: transform 0.25s var(--transition-smooth), box-shadow 0.25s ease, background 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: scale(0.96) !important;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0f172a;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 6px 26px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* 3D Avatar Tilt */
+    .hero-avatar-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+
+    .avatar-3d-card {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--bg-surface), #0f172a);
+      border: 3px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 50px var(--accent-glow);
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease-out;
+      cursor: pointer;
+    }
+
+    .avatar-initials {
+      font-size: 5.5rem;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transform: translateZ(35px);
+      user-select: none;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .mouse-icon {
+      width: 22px;
+      height: 36px;
+      border: 2px solid var(--text-dim);
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .mouse-wheel {
+      width: 4px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 2px;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: wheelBounce 1.8s infinite ease-in-out;
+    }
+
+    @keyframes wheelBounce {
+      0% { transform: translate(-50%, 0); opacity: 1; }
+      100% { transform: translate(-50%, 14px); opacity: 0; }
+    }
+
+    /* ==========================================================================
+       6. SECTION COMMON STYLING
+       ========================================================================== */
+    .section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       7. ABOUT & STATS
+       ========================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      line-height: 1.85;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      backdrop-filter: blur(10px);
+    }
+
+    .about-card strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .stats-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--transition-smooth), border-color 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateX(6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-val {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--accent);
+      min-width: 90px;
+      line-height: 1;
+    }
+
+    .stat-meta h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-meta p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       8. TIMELINE (EXPERIENCE)
+       ========================================================================== */
+    .timeline-wrap {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 2.5rem;
+    }
+
+    .timeline-track-svg {
+      position: absolute;
+      top: 0;
+      left: 11px;
+      width: 4px;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .timeline-track-bg {
+      stroke: var(--border-color);
+      stroke-width: 3;
+    }
+
+    .timeline-track-progress {
+      stroke: var(--accent);
+      stroke-width: 3;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+
+    .timeline-card-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+    }
+
+    .timeline-card-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: -2.5rem;
+      top: 1.5rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--bg-base);
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+      z-index: 2;
+      transform: translate(0, 0);
+    }
+
+    .timeline-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--transition-smooth), border-color 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .timeline-box:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .timeline-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .timeline-role-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .timeline-org {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 0.2rem;
+    }
+
+    .timeline-dates {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      background: var(--badge-bg);
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+    }
+
+    .timeline-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .timeline-bullets li {
+      position: relative;
+      padding-left: 1.5rem;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .timeline-bullets li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* ==========================================================================
+       9. SKILLS & BADGES
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .skill-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s var(--transition-smooth), border-color 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .skill-header {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .skill-header svg {
+      color: var(--accent);
+    }
+
+    .badge-collection {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .badge-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--border-color);
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+
+    .badge-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    /* ==========================================================================
+       10. PROJECTS (3D TILT CARDS)
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-badge-tag {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.25rem;
+    }
+
+    .project-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.85rem;
+    }
+
+    .project-summary {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+      flex-grow: 1;
+    }
+
+    .project-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .btn-action-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      transition: all 0.25s ease;
+    }
+
+    .btn-action-sm:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       11. EDUCATION
+       ========================================================================== */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .edu-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .edu-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .edu-icon-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-md);
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .edu-card:hover .edu-icon-badge {
+      transform: rotate(12deg) scale(1.08);
+    }
+
+    .edu-body h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .edu-body .edu-program {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-body .edu-desc {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       12. CONTACT & SALARY
+       ========================================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-info-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s var(--transition-smooth), border-color 0.3s ease;
+      position: relative;
+    }
+
+    .contact-info-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-icon-bubble {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .contact-info-card:hover .contact-icon-bubble {
+      transform: scale(1.15);
+    }
+
+    .contact-heading-tag {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-main-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      word-break: break-all;
+    }
+
+    .contact-sub-text {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    .copy-toast {
+      position: absolute;
+      bottom: -12px;
+      background: var(--accent);
+      color: #0f172a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-collaborate-banner {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-elevated) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-collaborate-banner h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.85rem;
+    }
+
+    .contact-collaborate-banner p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================================================
+       13. FOOTER
+       ========================================================================== */
+    .site-footer {
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-base);
+      padding: 2.5rem 0;
+      margin-top: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer-copy {
+      font-size: 0.925rem;
+      color: var(--text-dim);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-link {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    /* ==========================================================================
+       14. RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+      .hero-content {
+        margin: 0 auto;
+      }
+      .hero-title-badge {
+        justify-content: center;
+      }
+      .hero-cta {
+        justify-content: center;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-menu {
+        display: none;
+      }
+      .mobile-toggle-btn {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-name {
+        font-size: 2.5rem;
+      }
+      .hero-title-badge {
+        font-size: 1.15rem;
+      }
+      .section-title {
+        font-size: 1.85rem;
+      }
+      .avatar-3d-card {
+        width: 180px;
+        height: 180px;
+      }
+      .avatar-initials {
+        font-size: 4rem;
+      }
+      .timeline-wrap {
+        padding-left: 1.75rem;
+      }
+      .timeline-node {
+        left: -1.75rem;
+      }
+      .timeline-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .contact-collaborate-banner {
+        padding: 2rem 1.25rem;
+      }
+      .contact-collaborate-banner h3 {
+        font-size: 1.5rem;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* ==========================================================================
+       15. PRINT VIEW (CLEAN A4 RESUME / WINDOW.PRINT())
+       ========================================================================== */
+    @media print {
+      @page {
+        margin: 10mm 14mm 10mm 14mm;
+        size: A4 portrait;
+      }
+
+      *, *::before, *::after {
+        background: transparent !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        animation: none !important;
+        transition: none !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #111827 !important;
+        font-size: 9.5pt;
+        line-height: 1.4;
+      }
+
+      #webgl-canvas,
+      #scroll-progress,
+      .preloader,
+      .cursor-dot,
+      .cursor-ring,
+      .site-header,
+      .hero-cta,
+      .scroll-indicator,
+      .hero-avatar-wrap,
+      .project-footer-links,
+      .contact-collaborate-banner,
+      .site-footer,
+      .status-pill,
+      .timeline-track-svg,
+      .timeline-node,
+      .no-print {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .section {
+        padding: 0.75rem 0 !important;
+        page-break-inside: avoid;
+        border-top: 1px solid #e5e7eb !important;
+      }
+
+      .hero-section {
+        min-height: auto !important;
+        padding: 0 0 0.75rem !important;
+      }
+
+      .hero-grid {
+        display: block !important;
+      }
+
+      .hero-name {
+        font-size: 18pt !important;
+        margin-bottom: 2pt !important;
+      }
+
+      .hero-title-badge {
+        font-size: 12pt !important;
+        margin-bottom: 4pt !important;
+      }
+
+      .section-header {
+        margin-bottom: 0.5rem !important;
+      }
+
+      .section-tag {
+        display: none !important;
+      }
+
+      .section-title {
+        font-size: 12pt !important;
+        font-weight: 800 !important;
+        border-bottom: 1.5pt solid #111827 !important;
+        padding-bottom: 2pt !important;
+        margin-bottom: 0.5rem !important;
+      }
+
+      .timeline-wrap {
+        padding-left: 0 !important;
+      }
+
+      .timeline-card-item {
+        margin-bottom: 0.75rem !important;
+        page-break-inside: avoid;
+      }
+
+      .timeline-box {
+        border: none !important;
+        padding: 0 !important;
+      }
+
+      .timeline-top {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 2pt !important;
+      }
+
+      .timeline-role-name {
+        font-size: 10.5pt !important;
+      }
+
+      .timeline-org {
+        font-size: 9.5pt !important;
+        font-weight: 700 !important;
+      }
+
+      .timeline-dates {
+        font-size: 8.5pt !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+
+      .timeline-bullets li {
+        font-size: 8.5pt !important;
+        line-height: 1.35 !important;
+      }
+
+      .skills-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        page-break-inside: avoid;
+      }
+
+      .skill-card {
+        border: 1px solid #e5e7eb !important;
+        padding: 0.5rem !important;
+      }
+
+      .badge-chip {
+        font-size: 8pt !important;
+        padding: 0.15rem 0.4rem !important;
+        border: 1px solid #d1d5db !important;
+      }
+
+      .projects-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        page-break-inside: avoid;
+      }
+
+      .project-card {
+        border: 1px solid #e5e7eb !important;
+        padding: 0.5rem !important;
+        page-break-inside: avoid;
+      }
+
+      .edu-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.5rem !important;
+        page-break-inside: avoid;
+      }
+
+      .edu-card {
+        border: 1px solid #e5e7eb !important;
+        padding: 0.5rem !important;
+      }
+
+      .contact-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 0.4rem !important;
+        margin-bottom: 0 !important;
+      }
+
+      .contact-info-card {
+        border: 1px solid #e5e7eb !important;
+        padding: 0.4rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WebGL 3D Scene Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Top Scroll Progress Line -->
+  <div id="scroll-progress"></div>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link" data-i18n="skipLink">Skip to main content</a>
+
+  <!-- Custom Cursor Elements -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ==========================================================================
+       PRELOADER
+       ========================================================================== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-shutter preloader-shutter-top" id="shutterTop"></div>
+    <div class="preloader-shutter preloader-shutter-bottom" id="shutterBottom"></div>
+    <div class="preloader-content" id="preloaderContent">
+      <div class="preloader-badge-3d">IS</div>
+      <div class="preloader-bar-wrap">
+        <div class="preloader-bar" id="preloaderBar"></div>
+      </div>
+      <div class="preloader-percent" id="preloaderPercent">0%</div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="#hero" class="logo" aria-label="Ibrohim Sultonov Homepage">
+        <div class="logo-badge">IS</div>
+        <span>Ibrohim Sultonov</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#about" class="nav-link" data-i18n="navAbout">About</a>
+        <a href="#experience" class="nav-link" data-i18n="navExperience">Experience</a>
+        <a href="#skills" class="nav-link" data-i18n="navSkills">Skills</a>
+        <a href="#projects" class="nav-link" data-i18n="navProjects">Projects</a>
+        <a href="#education" class="nav-link" data-i18n="navEducation">Education</a>
+        <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="nav-tools">
+        <!-- Multilingual Switcher (EN, UZ, RU, TR) -->
+        <div class="lang-switcher" aria-label="Language Selector">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="uz">UZ</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="tr">TR</button>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Mobile Drawer Hamburger -->
+        <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Open Mobile Menu">
+          <svg id="hamburgerIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg id="closeIcon" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <nav class="nav-menu">
+        <a href="#about" class="nav-link mobile-link" data-i18n="navAbout">About</a>
+        <a href="#experience" class="nav-link mobile-link" data-i18n="navExperience">Experience</a>
+        <a href="#skills" class="nav-link mobile-link" data-i18n="navSkills">Skills</a>
+        <a href="#projects" class="nav-link mobile-link" data-i18n="navProjects">Projects</a>
+        <a href="#education" class="nav-link mobile-link" data-i18n="navEducation">Education</a>
+        <a href="#contact" class="nav-link mobile-link" data-i18n="navContact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main id="main-content">
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span data-i18n="heroStatus">Open for Opportunities & Projects</span>
+          </div>
+
+          <h1 class="hero-name">Ibrohim Sultonov</h1>
+
+          <div class="hero-title-badge">
+            <span data-i18n="heroRole">Senior Full Stack Developer</span>
+            <span class="hero-location-chip">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span data-i18n="heroLocation">Sirdaryo, Uzbekistan</span>
+            </span>
+          </div>
+
+          <p class="hero-slogan" data-i18n="heroSlogan">
+            Specializing in taking concepts from scratch to robust architecture, high-performance backends, modern interactive frontends, and production mobile applications.
+          </p>
+
+          <div class="hero-cta no-print">
+            <a href="#contact" class="btn btn-primary magnetic-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span data-i18n="btnContact">Get In Touch</span>
+            </a>
+
+            <button class="btn btn-secondary magnetic-btn" id="downloadCvBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span id="downloadBtnText" data-i18n="btnResume">Download CV (PDF)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Avatar Tilt -->
+        <div class="hero-avatar-wrap">
+          <div class="avatar-3d-card" id="avatarCard" title="Ibrohim Sultonov">
+            <!-- Replaceable photo option: <img src="avatar.jpg" alt="Ibrohim Sultonov" class="avatar-img"> -->
+            <span class="avatar-initials">IS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mouse Scroll Indicator -->
+      <div class="scroll-indicator no-print">
+        <div class="mouse-icon">
+          <div class="mouse-wheel"></div>
+        </div>
+        <span data-i18n="scrollNotice">SCROLL</span>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="aboutTag">Profile</span>
+          <h2 class="section-title" data-i18n="aboutTitle">About Me</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <p data-i18n="aboutBio">
+              Full Stack developer with over 2 years of hands-on experience building mission-critical products. In the backend, I leverage <strong>Node.js</strong> and <strong>Python (Django)</strong> with <strong>PostgreSQL</strong>. On the frontend, I craft smooth user experiences with <strong>React</strong> and <strong>Next.js</strong>. I am capable of leading products end-to-end — from technical specifications and database design to cloud deployment, mobile app release, and online payment integrations.
+            </p>
+          </div>
+
+          <div class="stats-stack">
+            <!-- Stat 1 -->
+            <div class="stat-card">
+              <div class="stat-val" data-counter="2">2+</div>
+              <div class="stat-meta">
+                <h4 data-i18n="stat1Title">Years Experience</h4>
+                <p data-i18n="stat1Sub">Full Stack, backend & mobile development</p>
+              </div>
+            </div>
+
+            <!-- Stat 2 -->
+            <div class="stat-card">
+              <div class="stat-val" data-counter="6">6+</div>
+              <div class="stat-meta">
+                <h4 data-i18n="stat2Title">Products & Systems</h4>
+                <p data-i18n="stat2Sub">Real production ERPs, web platforms & bots</p>
+              </div>
+            </div>
+
+            <!-- Stat 3 -->
+            <div class="stat-card">
+              <div class="stat-val" data-counter="1">1</div>
+              <div class="stat-meta">
+                <h4 data-i18n="stat3Title">Google Play App</h4>
+                <p data-i18n="stat3Sub">Successfully launched & published native mobile app</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. EXPERIENCE SECTION -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="expTag">Career</span>
+          <h2 class="section-title" data-i18n="expTitle">Work Experience</h2>
+        </div>
+
+        <div class="timeline-wrap">
+          <!-- SVG Line for GSAP Scrub -->
+          <svg class="timeline-track-svg" viewBox="0 0 4 1000" preserveAspectRatio="none">
+            <line class="timeline-track-bg" x1="2" y1="0" x2="2" y2="1000"></line>
+            <line class="timeline-track-progress" id="timelineProgressLine" x1="2" y1="0" x2="2" y2="0"></line>
+          </svg>
+
+          <!-- Job 1: Mebel City -->
+          <div class="timeline-card-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-box">
+              <div class="timeline-top">
+                <div>
+                  <h3 class="timeline-role-name" data-i18n="exp1Role">Full Stack Developer</h3>
+                  <div class="timeline-org" data-i18n="exp1Company">Mebel City (Bittada Ecosystem)</div>
+                </div>
+                <span class="timeline-dates" data-i18n="exp1Dates">Last 6+ months — Present</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li data-i18n="exp1Bullet1"><strong>Bittada Usta:</strong> Architected, built, and launched a comprehensive web platform (backend + frontend) for furniture craft masters, including seamless online payment gateway integration.</li>
+                <li data-i18n="exp1Bullet2">Developed the official Android application and successfully published it to the <strong>Google Play Store</strong>.</li>
+                <li data-i18n="exp1Bullet3">Contributed as an active core developer in the <strong>Bittada ERP</strong> team project (ongoing development).</li>
+                <li data-i18n="exp1Bullet4">Leading the expansion and technical strategy for the digital sales division of Bittada Usta.</li>
+                <li data-i18n="exp1Bullet5">Created and deployed company Telegram bot (<strong>@mebelcity_bittada_bot</strong>), making services instant and accessible.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Job 2: Stratix System -->
+          <div class="timeline-card-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-box">
+              <div class="timeline-top">
+                <div>
+                  <h3 class="timeline-role-name" data-i18n="exp2Role">Full Stack Developer</h3>
+                  <div class="timeline-org" data-i18n="exp2Company">Stratix System (IT Company)</div>
+                </div>
+                <span class="timeline-dates" data-i18n="exp2Dates">2 months</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li data-i18n="exp2Bullet1">Led technical scoping, specification (TZ) writing, and product execution across 3 major software systems.</li>
+                <li data-i18n="exp2Bullet2"><strong>Corporate Web Platform:</strong> Developed and launched the IT company's official corporate website for live production usage.</li>
+                <li data-i18n="exp2Bullet3"><strong>Online Accounting ERP:</strong> Architected and deployed a multi-tenant accounting ERP system to cloud servers with integrated online payment systems.</li>
+                <li data-i18n="exp2Bullet4"><strong>Healthcare & Medicine ERP:</strong> Developed a specialized medical management ERP platform for clinic workflow automation.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Job 3: Independent / Startups -->
+          <div class="timeline-card-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-box">
+              <div class="timeline-top">
+                <div>
+                  <h3 class="timeline-role-name" data-i18n="exp3Role">Telegram Bot & Web Developer</h3>
+                  <div class="timeline-org" data-i18n="exp3Company">Independent & Startup Projects</div>
+                </div>
+                <span class="timeline-dates" data-i18n="exp3Dates">1+ year</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li data-i18n="exp3Bullet1">1+ year specialized experience building asynchronous Telegram bots and automated business pipelines.</li>
+                <li data-i18n="exp3Bullet2">Engineered a complete web management platform for educational learning centers.</li>
+                <li data-i18n="exp3Bullet3">Shipped multiple startup concepts from zero to validated MVP status with open repositories on GitHub.</li>
+                <li data-i18n="exp3Bullet4">Practiced collaborative agile workflows, code reviews, and branching strategies using Git & GitHub.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SKILLS SECTION -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="skillsTag">Expertise</span>
+          <h2 class="section-title" data-i18n="skillsTitle">Technologies & Tools</h2>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Backend -->
+          <div class="skill-card">
+            <h3 class="skill-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              <span data-i18n="catBackend">Backend</span>
+            </h3>
+            <div class="badge-collection">
+              <span class="badge-chip">Node.js</span>
+              <span class="badge-chip">Python</span>
+              <span class="badge-chip">Django</span>
+              <span class="badge-chip">PostgreSQL</span>
+              <span class="badge-chip">REST API</span>
+              <span class="badge-chip">Online Payment Systems</span>
+            </div>
+          </div>
+
+          <!-- Frontend -->
+          <div class="skill-card">
+            <h3 class="skill-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              <span data-i18n="catFrontend">Frontend</span>
+            </h3>
+            <div class="badge-collection">
+              <span class="badge-chip">React</span>
+              <span class="badge-chip">Next.js</span>
+              <span class="badge-chip">JavaScript</span>
+              <span class="badge-chip">HTML5</span>
+              <span class="badge-chip">CSS3</span>
+            </div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="skill-card">
+            <h3 class="skill-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+              <span data-i18n="catMobile">Mobile</span>
+            </h3>
+            <div class="badge-collection">
+              <span class="badge-chip">Android App (Google Play)</span>
+            </div>
+          </div>
+
+          <!-- Other -->
+          <div class="skill-card">
+            <h3 class="skill-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span data-i18n="catOther">Ecosystem</span>
+            </h3>
+            <div class="badge-collection">
+              <span class="badge-chip">Telegram Bot API</span>
+              <span class="badge-chip">Git / GitHub</span>
+              <span class="badge-chip">ERP Architecture</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROJECTS SECTION -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="projTag">Portfolio</span>
+          <h2 class="section-title" data-i18n="projTitle">Featured Projects</h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- 1. Bittada Usta -->
+          <div class="project-card tilt-card">
+            <div>
+              <span class="project-badge-tag" data-i18n="proj1Badge">Web & Android App</span>
+              <h3 class="project-heading">Bittada Usta</h3>
+              <p class="project-summary" data-i18n="proj1Desc">
+                Complete platform for furniture artisans. Built full-stack web application, online payment checkout, and native Android application live on Google Play.
+              </p>
+            </div>
+            <div class="project-footer-links">
+              <a href="https://usta.bittada.uz/sultonbek_cl/spa/" target="_blank" rel="noopener noreferrer" class="btn-action-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span data-i18n="btnWeb">Web App</span>
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.bittada.bittadausta" target="_blank" rel="noopener noreferrer" class="btn-action-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Google Play
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. Mebel City -->
+          <div class="project-card tilt-card">
+            <div>
+              <span class="project-badge-tag" data-i18n="proj2Badge">Ecosystem Platform</span>
+              <h3 class="project-heading">Mebel City</h3>
+              <p class="project-summary" data-i18n="proj2Desc">
+                Official web platform and ecosystem engine connecting customers and furniture manufacturing services across Uzbekistan.
+              </p>
+            </div>
+            <div class="project-footer-links">
+              <a href="https://mebelcity.bittada.uz/" target="_blank" rel="noopener noreferrer" class="btn-action-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                <span data-i18n="btnVisit">Visit Platform</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3. Bittada ERP -->
+          <div class="project-card tilt-card">
+            <div>
+              <span class="project-badge-tag" data-i18n="proj3Badge">Team Project • Active</span>
+              <h3 class="project-heading">Bittada ERP</h3>
+              <p class="project-summary" data-i18n="proj3Desc">
+                Enterprise Resource Planning system automating multi-branch operations, warehouse inventories, and automated billing workflows.
+              </p>
+            </div>
+            <div class="project-footer-links">
+              <span class="badge-chip" data-i18n="proj3Status">Active Production</span>
+            </div>
+          </div>
+
+          <!-- 4. Stratix Accounting & Medical ERPs -->
+          <div class="project-card tilt-card">
+            <div>
+              <span class="project-badge-tag" data-i18n="proj4Badge">ERP & Cloud Deploy</span>
+              <h3 class="project-heading">Stratix Accounting & Medical ERPs</h3>
+              <p class="project-summary" data-i18n="proj4Desc">
+                Online accounting ERP with integrated online payment services, corporate portal, and specialized clinic medicine ERP platform.
+              </p>
+            </div>
+            <div class="project-footer-links">
+              <span class="badge-chip" data-i18n="proj4Status">Production Deployed</span>
+            </div>
+          </div>
+
+          <!-- 5. Mebel City Bot -->
+          <div class="project-card tilt-card">
+            <div>
+              <span class="project-badge-tag" data-i18n="proj5Badge">Telegram Bot</span>
+              <h3 class="project-heading">Mebel City Telegram Bot</h3>
+              <p class="project-summary" data-i18n="proj5Desc">
+                Automated customer assistance bot enabling instant service orders, consultation routing, and client communication directly on Telegram.
+              </p>
+            </div>
+            <div class="project-footer-links">
+              <a href="https://t.me/mebelcity_bittada_bot" target="_blank" rel="noopener noreferrer" class="btn-action-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-17.5 8.75a2.25 2.25 0 0 0 .152 4.02l4.47 1.49 1.74 5.22a1.5 1.5 0 0 0 2.45.62l3.07-2.69 4.8 3.6a2.25 2.25 0 0 0 3.54-1.37l3.5-16.5a2.25 2.25 0 0 0-2.2-2.355z"></path>
+                </svg>
+                @mebelcity_bittada_bot
+              </a>
+            </div>
+          </div>
+
+          <!-- 6. Startups & GitHub -->
+          <div class="project-card tilt-card">
+            <div>
+              <span class="project-badge-tag" data-i18n="proj6Badge">Open Source & Startups</span>
+              <h3 class="project-heading">Startup MVPs & Code Repositories</h3>
+              <p class="project-summary" data-i18n="proj6Desc">
+                Learning center management system, open-source architectures, startup prototypes, and verified algorithmic solutions.
+              </p>
+            </div>
+            <div class="project-footer-links">
+              <a href="https://github.com/Ibrohimbek7777878" target="_blank" rel="noopener noreferrer" class="btn-action-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                GitHub Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. EDUCATION SECTION -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="eduTag">Academics</span>
+          <h2 class="section-title" data-i18n="eduTitle">Education & Training</h2>
+        </div>
+
+        <div class="edu-grid">
+          <!-- Nextin IT Academy -->
+          <div class="edu-card">
+            <div class="edu-icon-badge">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <div class="edu-body">
+              <h3>Nextin IT Academy</h3>
+              <div class="edu-program" data-i18n="edu1Program">Practical Internship & Development</div>
+              <div class="edu-desc" data-i18n="edu1Desc">Advanced software internship — Ongoing</div>
+            </div>
+          </div>
+
+          <!-- IT Live -->
+          <div class="edu-card">
+            <div class="edu-icon-badge">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <div class="edu-body">
+              <h3>IT Live</h3>
+              <div class="edu-program" data-i18n="edu2Program">Software Engineering Program</div>
+              <div class="edu-desc" data-i18n="edu2Desc">Backend & Web development intensive</div>
+            </div>
+          </div>
+
+          <!-- Guliston Academy -->
+          <div class="edu-card">
+            <div class="edu-icon-badge">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="edu-body">
+              <h3>Guliston Academy</h3>
+              <div class="edu-program" data-i18n="edu3Program">Computer Science Fundamentals</div>
+              <div class="edu-desc" data-i18n="edu3Desc">Programming foundation & algorithms</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONTACT SECTION -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="contactTag">Communication</span>
+          <h2 class="section-title" data-i18n="contactTitle">Get In Touch</h2>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Phone -->
+          <div class="contact-info-card copyable" data-copy="+998949518003">
+            <div class="contact-icon-bubble">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <span class="contact-heading-tag" data-i18n="contactPhone">Phone</span>
+            <div class="contact-main-text">+998 94 951 80 03</div>
+            <span class="contact-sub-text" data-i18n="clickToCopy">Click to copy</span>
+            <span class="copy-toast" data-i18n="copiedToast">Copied!</span>
+          </div>
+
+          <!-- Telegram -->
+          <div class="contact-info-card copyable" data-copy="@sultonbe78">
+            <div class="contact-icon-bubble">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-17.5 8.75a2.25 2.25 0 0 0 .152 4.02l4.47 1.49 1.74 5.22a1.5 1.5 0 0 0 2.45.62l3.07-2.69 4.8 3.6a2.25 2.25 0 0 0 3.54-1.37l3.5-16.5a2.25 2.25 0 0 0-2.2-2.355z"></path>
+              </svg>
+            </div>
+            <span class="contact-heading-tag">Telegram</span>
+            <div class="contact-main-text">
+              <a href="https://t.me/sultonbe78" target="_blank" rel="noopener noreferrer">@sultonbe78</a>
+            </div>
+            <span class="contact-sub-text" data-i18n="clickToChat">Direct message</span>
+            <span class="copy-toast" data-i18n="copiedToast">Copied!</span>
+          </div>
+
+          <!-- Salary Requirement -->
+          <div class="contact-info-card">
+            <div class="contact-icon-bubble">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <span class="contact-heading-tag" data-i18n="contactSalaryTag">Salary</span>
+            <div class="contact-main-text">600$ +</div>
+            <span class="contact-sub-text" data-i18n="salaryNegotiable">Kelishiladi (Negotiable)</span>
+          </div>
+
+          <!-- Location -->
+          <div class="contact-info-card">
+            <div class="contact-icon-bubble">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <span class="contact-heading-tag" data-i18n="contactLocationTag">Location</span>
+            <div class="contact-main-text" data-i18n="locationVal">Sirdaryo, Uzbekistan</div>
+            <span class="contact-sub-text" data-i18n="remoteRelocate">Remote / On-site</span>
+          </div>
+        </div>
+
+        <!-- Collaborative Call to Action Banner -->
+        <div class="contact-collaborate-banner no-print">
+          <h3 data-i18n="collabTitle">Ready to Build Great Products Together?</h3>
+          <p data-i18n="collabDesc">
+            Whether you have a startup MVP to launch, an enterprise ERP to scale, or need a versatile Full Stack engineer in your team, let's connect.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://t.me/sultonbe78" target="_blank" rel="noopener noreferrer" class="btn btn-primary magnetic-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-17.5 8.75a2.25 2.25 0 0 0 .152 4.02l4.47 1.49 1.74 5.22a1.5 1.5 0 0 0 2.45.62l3.07-2.69 4.8 3.6a2.25 2.25 0 0 0 3.54-1.37l3.5-16.5a2.25 2.25 0 0 0-2.2-2.355z"></path>
+              </svg>
+              <span data-i18n="btnTelegram">Chat on Telegram</span>
+            </a>
+            <a href="tel:+998949518003" class="btn btn-secondary magnetic-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span data-i18n="btnCall">Call Phone</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-copy">
+        &copy; 2026 Ibrohim Sultonov. <span data-i18n="footerRights">All rights reserved.</span>
+      </div>
+      <div class="footer-nav">
+        <a href="https://t.me/sultonbe78" target="_blank" rel="noopener noreferrer" class="footer-link">Telegram</a>
+        <a href="https://github.com/Ibrohimbek7777878" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <span class="footer-link" id="backToTopBtn" data-i18n="backToTop">Back to Top ↑</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT: CONFIG, THREE.JS, GSAP, I18N, CURSOR
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       CONFIG: Customizable Scene, Animation, and Color Parameters
+       ========================================================================== */
+    const CONFIG = {
+      theme: {
+        darkBg: 0x0f172a,
+        lightBg: 0xf8fafc,
+        darkAccent: 0x38bdf8,
+        lightAccent: 0x0284c7,
+        lineColor: 0x334155,
+      },
+      particles: {
+        countDesktop: 140,
+        countMobile: 50,
+        maxDistance: 110,
+        moveSpeed: 0.35,
+      },
+      mesh: {
+        radius: 28,
+        detail: 1,
+        rotationSpeed: 0.003,
+      },
+      lerpSpeed: 0.08,
+      defaultLanguage: 'en',
+    };
+
+    /* ==========================================================================
+       I18N: MULTILINGUAL DICTIONARY (EN, UZ, RU, TR)
+       ========================================================================== */
+    const TRANSLATIONS = {
+      en: {
+        skipLink: "Skip to main content",
+        navAbout: "About",
+        navExperience: "Experience",
+        navSkills: "Skills",
+        navProjects: "Projects",
+        navEducation: "Education",
+        navContact: "Contact",
+        heroStatus: "Open for Opportunities & Projects",
+        heroRole: "Senior Full Stack Developer",
+        heroLocation: "Sirdaryo, Uzbekistan",
+        heroSlogan: "Specializing in taking concepts from scratch to robust architecture, high-performance backends, modern interactive frontends, and production mobile applications.",
+        btnContact: "Get In Touch",
+        btnResume: "Download CV (PDF)",
+        scrollNotice: "SCROLL",
+        aboutTag: "Profile",
+        aboutTitle: "About Me",
+        aboutBio: "Full Stack developer with over 2 years of hands-on experience building mission-critical products. In the backend, I leverage <strong>Node.js</strong> and <strong>Python (Django)</strong> with <strong>PostgreSQL</strong>. On the frontend, I craft smooth user experiences with <strong>React</strong> and <strong>Next.js</strong>. I am capable of leading products end-to-end — from technical specifications and database design to cloud deployment, mobile app release, and online payment integrations.",
+        stat1Title: "Years Experience",
+        stat1Sub: "Full Stack, backend & mobile development",
+        stat2Title: "Products & Systems",
+        stat2Sub: "Real production ERPs, web platforms & bots",
+        stat3Title: "Google Play App",
+        stat3Sub: "Successfully launched & published native mobile app",
+        expTag: "Career",
+        expTitle: "Work Experience",
+        exp1Role: "Full Stack Developer",
+        exp1Company: "Mebel City (Bittada Ecosystem)",
+        exp1Dates: "Last 6+ months — Present",
+        exp1Bullet1: "<strong>Bittada Usta:</strong> Architected, built, and launched a comprehensive web platform (backend + frontend) for furniture craft masters, including seamless online payment gateway integration.",
+        exp1Bullet2: "Developed the official Android application and successfully published it to the <strong>Google Play Store</strong>.",
+        exp1Bullet3: "Contributed as an active core developer in the <strong>Bittada ERP</strong> team project (ongoing development).",
+        exp1Bullet4: "Leading the expansion and technical strategy for the digital sales division of Bittada Usta.",
+        exp1Bullet5: "Created and deployed company Telegram bot (<strong>@mebelcity_bittada_bot</strong>), making services instant and accessible.",
+        exp2Role: "Full Stack Developer",
+        exp2Company: "Stratix System (IT Company)",
+        exp2Dates: "2 months",
+        exp2Bullet1: "Led technical scoping, specification (TZ) writing, and product execution across 3 major software systems.",
+        exp2Bullet2: "<strong>Corporate Web Platform:</strong> Developed and launched the IT company's official corporate website for live production usage.",
+        exp2Bullet3: "<strong>Online Accounting ERP:</strong> Architected and deployed a multi-tenant accounting ERP system to cloud servers with integrated online payment systems.",
+        exp2Bullet4: "<strong>Healthcare & Medicine ERP:</strong> Developed a specialized medical management ERP platform for clinic workflow automation.",
+        exp3Role: "Telegram Bot & Web Developer",
+        exp3Company: "Independent & Startup Projects",
+        exp3Dates: "1+ year",
+        exp3Bullet1: "1+ year specialized experience building asynchronous Telegram bots and automated business pipelines.",
+        exp3Bullet2: "Engineered a complete web management platform for educational learning centers.",
+        exp3Bullet3: "Shipped multiple startup concepts from zero to validated MVP status with open repositories on GitHub.",
+        exp3Bullet4: "Practiced collaborative agile workflows, code reviews, and branching strategies using Git & GitHub.",
+        skillsTag: "Expertise",
+        skillsTitle: "Technologies & Tools",
+        catBackend: "Backend",
+        catFrontend: "Frontend",
+        catMobile: "Mobile",
+        catOther: "Ecosystem",
+        projTag: "Portfolio",
+        projTitle: "Featured Projects",
+        proj1Badge: "Web & Android App",
+        proj1Desc: "Complete platform for furniture artisans. Built full-stack web application, online payment checkout, and native Android application live on Google Play.",
+        proj2Badge: "Ecosystem Platform",
+        proj2Desc: "Official web platform and ecosystem engine connecting customers and furniture manufacturing services across Uzbekistan.",
+        proj3Badge: "Team Project • Active",
+        proj3Desc: "Enterprise Resource Planning system automating multi-branch operations, warehouse inventories, and automated billing workflows.",
+        proj3Status: "Active Production",
+        proj4Badge: "ERP & Cloud Deploy",
+        proj4Desc: "Online accounting ERP with integrated online payment services, corporate portal, and specialized clinic medicine ERP platform.",
+        proj4Status: "Production Deployed",
+        proj5Badge: "Telegram Bot",
+        proj5Desc: "Automated customer assistance bot enabling instant service orders, consultation routing, and client communication directly on Telegram.",
+        proj6Badge: "Open Source & Startups",
+        proj6Desc: "Learning center management system, open-source architectures, startup prototypes, and verified algorithmic solutions.",
+        btnWeb: "Web App",
+        btnVisit: "Visit Platform",
+        eduTag: "Academics",
+        eduTitle: "Education & Training",
+        edu1Program: "Practical Internship & Development",
+        edu1Desc: "Advanced software internship — Ongoing",
+        edu2Program: "Software Engineering Program",
+        edu2Desc: "Backend & Web development intensive",
+        edu3Program: "Computer Science Fundamentals",
+        edu3Desc: "Programming foundation & algorithms",
+        contactTag: "Communication",
+        contactTitle: "Get In Touch",
+        contactPhone: "Phone",
+        clickToCopy: "Click to copy",
+        copiedToast: "Copied!",
+        clickToChat: "Direct message",
+        contactSalaryTag: "Salary Requirement",
+        salaryNegotiable: "Kelishiladi (Negotiable)",
+        contactLocationTag: "Location",
+        locationVal: "Sirdaryo, Uzbekistan",
+        remoteRelocate: "Remote / On-site",
+        collabTitle: "Ready to Build Great Products Together?",
+        collabDesc: "Whether you have a startup MVP to launch, an enterprise ERP to scale, or need a versatile Full Stack engineer in your team, let's connect.",
+        btnTelegram: "Chat on Telegram",
+        btnCall: "Call Phone",
+        footerRights: "All rights reserved.",
+        backToTop: "Back to Top ↑",
+      },
+      uz: {
+        skipLink: "Asosiy kontentga o‘tish",
+        navAbout: "Men haqimda",
+        navExperience: "Tajriba",
+        navSkills: "Ko‘nikmalar",
+        navProjects: "Loyihalar",
+        navEducation: "Ta‘lim",
+        navContact: "Aloqa",
+        heroStatus: "Yangi takliflar va loyihalar uchun ochiq",
+        heroRole: "Full Stack Dasturchi",
+        heroLocation: "Sirdaryo, O‘zbekiston",
+        heroSlogan: "G‘oyani noldan boshlab mustahkam arxitektura, yuqori unumdor backend, zamonaviy web interfeys va mobil ilovagacha to‘liq yetkazib beruvchi Full Stack mutaxassis.",
+        btnContact: "Bog‘lanish",
+        btnResume: "Rezyumeni yuklab olish (PDF)",
+        scrollNotice: "PASTGA",
+        aboutTag: "Profil",
+        aboutTitle: "Men haqimda",
+        aboutBio: "2 yildan ortiq tajribaga ega <strong>Full Stack dasturchi</strong>. Backendda <strong>Node.js</strong> va <strong>Python (Django)</strong>, ma'lumotlar bazasida <strong>PostgreSQL</strong>, frontendda <strong>React</strong> va <strong>Next.js</strong> bilan ishlayman. G‘oyani noldan boshlab, ya‘ni texnik topshiriq (TZ), arxitektura, backend, interfeys, mobil ilova, onlayn to'lovlar va foydalanuvchiga yetkazishgacha mustaqil olib chiqa olaman.",
+        stat1Title: "Yil umumiy tajriba",
+        stat1Sub: "Full Stack, backend va mobil ilovalar",
+        stat2Title: "Mahsulot va tizimlar",
+        stat2Sub: "Real ERP tizimlar, web platformalar va botlar",
+        stat3Title: "Google Play ilovasi",
+        stat3Sub: "Muvaffaqiyatli ishga tushirilgan mobil ilova",
+        expTag: "Faoliyat",
+        expTitle: "Ish tajribasi",
+        exp1Role: "Full Stack dasturchi",
+        exp1Company: "Mebel City (Bittada ekotizimi)",
+        exp1Dates: "Oxirgi 6+ oy — Hozirgacha",
+        exp1Bullet1: "<strong>Bittada Usta:</strong> Mebel ustalari uchun to‘liq platformani (backend + web frontend) ishlab chiqib, onlayn to‘lov tizimlarini joriy qildim.",
+        exp1Bullet2: "Platformaning Android ilovasini noldan yaratib, <strong>Google Play</strong> do‘konida e‘lon qildim.",
+        exp1Bullet3: "<strong>Bittada ERP</strong> keng qamrovli loyihasida jamoa bilan faol ishtirok etdim (loyihada ish davom etmoqda).",
+        exp1Bullet4: "Hozirda Bittada Usta xizmatlarini sotish (sotuv) yo‘nalishini rivojlantirish ustida ishlayapman.",
+        exp1Bullet5: "Telegram bot (<strong>@mebelcity_bittada_bot</strong>) orqali kompaniya xizmatlarini mijozlarga yaqinlashtirdim.",
+        exp2Role: "Full Stack dasturchi",
+        exp2Company: "Stratix System (IT kompaniyasi)",
+        exp2Dates: "2 oy",
+        exp2Bullet1: "3 ta yirik loyihada qatnashdim; loyihalarning boshlanishi, texnik topshiriq (TZ) yozish hamda loyihani to‘liq olib chiqishda boshchilik qildim.",
+        exp2Bullet2: "<strong>IT kompaniya sayti:</strong> Kompaniyaning o‘zining rasmiy web saytini to‘liq ishlab chiqib ishga tushirdik va foydalanildi.",
+        exp2Bullet3: "<strong>Onlayn buxgalteriya ERP:</strong> Buxgalteriya ERP tizimini ishlab chiqib, serverga o‘rnatdik va onlayn to‘lov tizimlarini integratsiya qildik.",
+        exp2Bullet4: "<strong>Tibbiyot ERP:</strong> Onlayn tibbiyot (meditsina) uchun maxsus ERP tizimini yaratdik.",
+        exp3Role: "Telegram bot va web dasturchi",
+        exp3Company: "Mustaqil / Startup loyihalar",
+        exp3Dates: "1+ yil",
+        exp3Bullet1: "Telegram botlar yaratish bo‘yicha 1 yillik chuqur amaliy tajriba.",
+        exp3Bullet2: "O‘quv markazlar uchun qulay va moslashuvchan web platforma ishlab chiqdim.",
+        exp3Bullet3: "Bir nechta startup g‘oyalarini MVP darajasigacha olib chiqdim, kodlar GitHub'da doimiy yangilanadi.",
+        exp3Bullet4: "Real jamoa loyihalarida Git orqali samarali hamkorlikda ishlash tajribasi.",
+        skillsTag: "Ko‘nikmalar",
+        skillsTitle: "Texnologiyalar",
+        catBackend: "Backend",
+        catFrontend: "Frontend",
+        catMobile: "Mobil",
+        catOther: "Boshqa",
+        projTag: "Portfolio",
+        projTitle: "Amaliy loyihalar",
+        proj1Badge: "Web & Android ilova",
+        proj1Desc: "Mebel ustalari platformasi. Backend, frontend, onlayn to‘lov tizimi hamda Google Play'da e‘lon qilingan Android mobil ilova.",
+        proj2Badge: "Ekotizim tizimi",
+        proj2Desc: "Mebel sohasi uchun kompaniyaning asosiy web platformasi va xizmatlarni mijozlarga taqdim etuvchi rasmiy tizim.",
+        proj3Badge: "Jamoaviy • Faol",
+        proj3Desc: "Kompaniya ichki resurslari va jarayonlarini avtomatlashtirish bo‘yicha keng ko‘lamli jamoaviy ERP loyiha.",
+        proj3Status: "Ishlab chiqilmoqda",
+        proj4Badge: "ERP & Server Deploy",
+        proj4Desc: "Onlayn buxgalteriya ERP, to‘lov tizimlari, korporativ sayt va tibbiyot ERP tizimlari kompleksi.",
+        proj4Status: "Serverga topshirilgan",
+        proj5Badge: "Telegram Bot",
+        proj5Desc: "Kompaniya xizmatlarini mijozlarga tezkor yetkazib beruvchi maxsus avtomatlashtirilgan Telegram bot.",
+        proj6Badge: "Open Source & MVP",
+        proj6Desc: "O‘quv markazlar tizimi, startup loyihalar ombori va ochiq manbali kodlar bazasi.",
+        btnWeb: "Web versiya",
+        btnVisit: "Saytga o‘tish",
+        eduTag: "Malaka",
+        eduTitle: "Ta‘lim va Kurslar",
+        edu1Program: "Amaliyot va dasturlash",
+        edu1Desc: "Real loyihalar ustida ishlash — Hozirda davom etmoqda",
+        edu2Program: "Dasturiy injiniring",
+        edu2Desc: "Backend va web texnologiyalari kursi",
+        edu3Program: "Dasturlash asoslari",
+        edu3Desc: "Dasturlash va kompyuter savodxonligi akademiyasi",
+        contactTag: "Bog‘lanish",
+        contactTitle: "Aloqa ma‘lumotlari",
+        contactPhone: "Telefon raqam",
+        clickToCopy: "Nusxa olish uchun bosing",
+        copiedToast: "Nusxalandi!",
+        clickToChat: "Tezkor xabar",
+        contactSalaryTag: "Maosh kutmasi",
+        salaryNegotiable: "Kelishiladi",
+        contactLocationTag: "Joylashuv",
+        locationVal: "Sirdaryo, O‘zbekiston",
+        remoteRelocate: "Masofaviy / Ofis",
+        collabTitle: "Birga ishlashga tayyormisiz?",
+        collabDesc: "Yangi loyihalar, startup MVP yoki jamoangizga mas'uliyatli Full Stack dasturchi kerak bo‘lsa, to‘g‘ridan-to‘g‘ri bog‘lanishingiz mumkin.",
+        btnTelegram: "Telegram orqali bog‘lanish",
+        btnCall: "Qo‘ng‘iroq qilish",
+        footerRights: "Barcha huquqlar himoyalangan.",
+        backToTop: "Yuqoriga ↑",
+      },
+      ru: {
+        skipLink: "Перейти к основному контенту",
+        navAbout: "Обо мне",
+        navExperience: "Опыт",
+        navSkills: "Навыки",
+        navProjects: "Проекты",
+        navEducation: "Образование",
+        navContact: "Контакты",
+        heroStatus: "Открыт для предложений и проектов",
+        heroRole: "Full Stack Разработчик",
+        heroLocation: "Сырдарья, Узбекистан",
+        heroSlogan: "Специализируюсь на создании продуктов с нуля: надежная архитектура, производительный бэкенд, интерактивный фронтенд и мобильные приложения.",
+        btnContact: "Связаться",
+        btnResume: "Скачать резюме (PDF)",
+        scrollNotice: "ВНИЗ",
+        aboutTag: "Профиль",
+        aboutTitle: "Обо мне",
+        aboutBio: "Full Stack разработчик с опытом более 2 лет. В бэкенде применяю <strong>Node.js</strong> и <strong>Python (Django)</strong> с базой данных <strong>PostgreSQL</strong>. Во фронтенде создаю современные интерфейсы на <strong>React</strong> и <strong>Next.js</strong>. Способен автономно вести проект от написания ТЗ и архитектуры до серверного деплоя, онлайн-платежей и публикации мобильных приложений в Google Play.",
+        stat1Title: "Года опыта",
+        stat1Sub: "Full Stack, бэкенд и мобильная разработка",
+        stat2Title: "Продуктов и систем",
+        stat2Sub: "ERP системы, веб-платформы и боты",
+        stat3Title: "Приложение Google Play",
+        stat3Sub: "Успешно опубликовано в магазине приложений",
+        expTag: "Карьера",
+        expTitle: "Опыт работы",
+        exp1Role: "Full Stack разработчик",
+        exp1Company: "Mebel City (Экосистема Bittada)",
+        exp1Dates: "Последние 6+ месяцев — по настоящее время",
+        exp1Bullet1: "<strong>Bittada Usta:</strong> разработал и запустил платформу для мастеров мебели с интеграцией платежных систем.",
+        exp1Bullet2: "Создал с нуля и опубликовал мобильное Android приложение в <strong>Google Play Store</strong>.",
+        exp1Bullet3: "Принимал активное участие в разработке масштабной системы <strong>Bittada ERP</strong>.",
+        exp1Bullet4: "Курирую техническое развитие направления продаж сервиса Bittada Usta.",
+        exp1Bullet5: "Создал Telegram-бота (<strong>@mebelcity_bittada_bot</strong>), сделав сервис быстрым и доступным.",
+        exp2Role: "Full Stack разработчик",
+        exp2Company: "Stratix System (IT компания)",
+        exp2Dates: "2 месяца",
+        exp2Bullet1: "Руководил составлением ТЗ, архитектурным планированием и релизом 3 крупных систем.",
+        exp2Bullet2: "<strong>Корпоративный сайт:</strong> разработал и запустил официальный веб-сайт IT-компании.",
+        exp2Bullet3: "<strong>Онлайн-бухгалтерия ERP:</strong> создал и развернул на сервере облачную ERP систему с онлайн-оплатой.",
+        exp2Bullet4: "<strong>Медицинская ERP:</strong> разработал платформу управления процессами для медицинских клиник.",
+        exp3Role: "Telegram bot и веб-разработчик",
+        exp3Company: "Независимые и стартап-проекты",
+        exp3Dates: "1+ год",
+        exp3Bullet1: "Более 1 года опыта создания масштабируемых Telegram-ботов и автоматизации процессов.",
+        exp3Bullet2: "Спроектировал веб-платформу для управления учебными центрами.",
+        exp3Bullet3: "Довел несколько стартап-идей до стадии MVP с открытым кодом на GitHub.",
+        exp3Bullet4: "Опыт слаженной командной работы в Git.",
+        skillsTag: "Навыки",
+        skillsTitle: "Технологии",
+        catBackend: "Бэкенд",
+        catFrontend: "Фронтенд",
+        catMobile: "Мобильные",
+        catOther: "Экосистема",
+        projTag: "Портфолио",
+        projTitle: "Проекты",
+        proj1Badge: "Веб и Android",
+        proj1Desc: "Платформа для мастеров мебели, онлайн-оплата и мобильное приложение в Google Play.",
+        proj2Badge: "Экосистема",
+        proj2Desc: "Официальная платформа компании, объединяющая мебельные сервисы по стране.",
+        proj3Badge: "Командный • В процессе",
+        proj3Desc: "Комплексная ERP система для автоматизации производства и складского учета.",
+        proj3Status: "Активная разработка",
+        proj4Badge: "ERP & Серверный деплой",
+        proj4Desc: "Бухгалтерская ERP с платежными системами, корпоративный портал и медицинская ERP.",
+        proj4Status: "Развернуто на сервере",
+        proj5Badge: "Telegram-бот",
+        proj5Desc: "Автоматизированный бот для приема заказов и коммуникации с клиентами.",
+        proj6Badge: "Open Source & MVP",
+        proj6Desc: "Платформа учебных центров, прототипы стартапов и база репозиториев на GitHub.",
+        btnWeb: "Веб-версия",
+        btnVisit: "Перейти на сайт",
+        eduTag: "Квалификация",
+        eduTitle: "Образование",
+        edu1Program: "Практическая стажировка",
+        edu1Desc: "Работа над реальными продуктами — Продолжается",
+        edu2Program: "Программная инженерия",
+        edu2Desc: "Интенсивный курс веб и бэкенд разработки",
+        edu3Program: "Основы программирования",
+        edu3Desc: "Академия алгоритмов и компьютерных наук",
+        contactTag: "Контакты",
+        contactTitle: "Связаться со мной",
+        contactPhone: "Телефон",
+        clickToCopy: "Нажмите для копирования",
+        copiedToast: "Скопировано!",
+        clickToChat: "Прямой чат",
+        contactSalaryTag: "Ожидания по зарплате",
+        salaryNegotiable: "Договорная (Kelishiladi)",
+        contactLocationTag: "Локация",
+        locationVal: "Сырдарья, Узбекистан",
+        remoteRelocate: "Удаленно / Офис",
+        collabTitle: "Готовы к сотрудничеству?",
+        collabDesc: "Если вам требуется сильный Full Stack разработчик для стартапа, ERP или корпоративного проекта — напишите мне.",
+        btnTelegram: "Написать в Telegram",
+        btnCall: "Позвонить",
+        footerRights: "Все права защищены.",
+        backToTop: "Наверх ↑",
+      },
+      tr: {
+        skipLink: "Ana içeriğe geç",
+        navAbout: "Hakkımda",
+        navExperience: "Deneyim",
+        navSkills: "Yetenekler",
+        navProjects: "Projeler",
+        navEducation: "Eğitim",
+        navContact: "İletişim",
+        heroStatus: "Yeni Fırsatlara ve Projelere Açık",
+        heroRole: "Full Stack Geliştirici",
+        heroLocation: "Sirdaryo, Özbekistan",
+        heroSlogan: "Fikirleri sıfırdan alıp sağlam mimari, yüksek performanslı backend, modern frontend ve mobil uygulamalara dönüştüren Full Stack uzmanı.",
+        btnContact: "İletişime Geç",
+        btnResume: "Özgeçmişi İndir (PDF)",
+        scrollNotice: "AŞAĞI",
+        aboutTag: "Profil",
+        aboutTitle: "Hakkımda",
+        aboutBio: "2 yılı aşkın deneyime sahip <strong>Full Stack geliştiriciyim</strong>. Backend tarafında <strong>Node.js</strong>, <strong>Python (Django)</strong> ve <strong>PostgreSQL</strong>; frontend tarafında ise <strong>React</strong> ve <strong>Next.js</strong> kullanıyorum. Projeyi teknik şartnameden başlayarak veritabanı, mobil uygulama, online ödeme sistemleri ve sunucu kurulumuna kadar tek başıma başarıyla yönetebilirim.",
+        stat1Title: "Yıllık Deneyim",
+        stat1Sub: "Full Stack, backend ve mobil geliştirme",
+        stat2Title: "Ürün & Sistem",
+        stat2Sub: "Canlı ERP sistemleri, platformlar ve botlar",
+        stat3Title: "Google Play Uygulaması",
+        stat3Sub: "Mağazada başarıyla yayınlanmış mobil uygulama",
+        expTag: "Kariyer",
+        expTitle: "İş Deneyimi",
+        exp1Role: "Full Stack Geliştirici",
+        exp1Company: "Mebel City (Bittada Ekosistemi)",
+        exp1Dates: "Son 6+ ay — Devam Ediyor",
+        exp1Bullet1: "<strong>Bittada Usta:</strong> Mobilya ustaları için online ödeme altyapısına sahip kapsamlı web platformunu geliştirdim ve yayına aldım.",
+        exp1Bullet2: "Uygulamanın Android sürümünü sıfırdan geliştirip <strong>Google Play Store</strong>'da yayınladım.",
+        exp1Bullet3: "Geniş kapsamlı <strong>Bittada ERP</strong> projesinde aktif çekirdek geliştirici olarak yer aldım.",
+        exp1Bullet4: "Bittada Usta dijital satış kanallarının teknik stratejisini yönetiyorum.",
+        exp1Bullet5: "Şirket hizmetlerini hızlandıran Telegram botunu (<strong>@mebelcity_bittada_bot</strong>) kurdum.",
+        exp2Role: "Full Stack Geliştirici",
+        exp2Company: "Stratix System (IT Şirketi)",
+        exp2Dates: "2 ay",
+        exp2Bullet1: "3 büyük kurumsal yazılımın şartname (TZ) hazırlığı, mimarisi ve canlıya alınmasına liderlik ettim.",
+        exp2Bullet2: "<strong>Kurumsal Web Sitesi:</strong> IT şirketinin resmi web platformunu canlıya sunduk.",
+        exp2Bullet3: "<strong>Online Muhasebe ERP:</strong> Online ödeme entegrasyonlu muhasebe ERP sistemini sunucuya kurduk.",
+        exp2Bullet4: "<strong>Sağlık & Medikal ERP:</strong> Klinikler için özel medikal süreç yönetim ERP platformunu ürettik.",
+        exp3Role: "Telegram Bot ve Web Geliştirici",
+        exp3Company: "Bağımsız / Girişim Projeleri",
+        exp3Dates: "1+ yıl",
+        exp3Bullet1: "Telegram botları geliştirme alanında 1 yılı aşkın yoğun pratik tecrübe.",
+        exp3Bullet2: "Eğitim merkezleri için modüler web yönetim platformu kurdum.",
+        exp3Bullet3: "Birçok startup fikrini MVP aşamasına getirip GitHub üzerinde açık kaynak paylaştım.",
+        exp3Bullet4: "Git ile profesyonel ekip çalışması ve sürüm kontrolü deneyimi.",
+        skillsTag: "Uzmanlık",
+        skillsTitle: "Teknolojiler",
+        catBackend: "Backend",
+        catFrontend: "Frontend",
+        catMobile: "Mobil",
+        catOther: "Ekosistem",
+        projTag: "Portfolyo",
+        projTitle: "Öne Çıkan Projeler",
+        proj1Badge: "Web & Android",
+        proj1Desc: "Mobilya ustaları platformu, online ödeme altyapısı ve Google Play'de yayınlanan Android uygulaması.",
+        proj2Badge: "Ekosistem",
+        proj2Desc: "Ülke genelinde mobilya ve üretim hizmetlerini birleştiren ana kurumsal platform.",
+        proj3Badge: "Ekip Projesi • Aktif",
+        proj3Desc: "Şirket operasyonlarını ve envanter yönetimini otomatikleştiren kapsamlı ERP sistemi.",
+        proj3Status: "Aktif Geliştirme",
+        proj4Badge: "ERP & Sunucu Kurulumu",
+        proj4Desc: "Online muhasebe ERP, ödeme entegrasyonları, kurumsal portal ve medikal ERP.",
+        proj4Status: "Sunucuda Canlıda",
+        proj5Badge: "Telegram Botu",
+        proj5Desc: "Müşteri siparişlerini ve görüşmelerini hızlandıran otomatik Telegram botu.",
+        proj6Badge: "Açık Kaynak & MVP",
+        proj6Desc: "Eğitim yönetim platformu, girişim prototipleri ve GitHub kaynak kodları.",
+        btnWeb: "Web Sürümü",
+        btnVisit: "Siteye Git",
+        eduTag: "Eğitim",
+        eduTitle: "Eğitim ve Sertifikalar",
+        edu1Program: "Uygulamalı Staj",
+        edu1Desc: "Canlı yazılım projeleri üzerinde çalışma — Devam Ediyor",
+        edu2Program: "Yazılım Mühendisliği",
+        edu2Desc: "Backend ve web teknolojileri yoğun programı",
+        edu3Program: "Bilgisayar Bilimleri Temelleri",
+        edu3Desc: "Algoritmalar ve programlama temelleri akademisi",
+        contactTag: "İletişim",
+        contactTitle: "Bana Ulaşın",
+        contactPhone: "Telefon",
+        clickToCopy: "Kopyalamak için tıklayın",
+        copiedToast: "Kopyalandı!",
+        clickToChat: "Doğrudan mesaj",
+        contactSalaryTag: "Maaş Beklentisi",
+        salaryNegotiable: "Görüşülür (Kelishiladi)",
+        contactLocationTag: "Konum",
+        locationVal: "Sirdaryo, Özbekistan",
+        remoteRelocate: "Uzaktan / Ofis",
+        collabTitle: "Birlikte Harika Projeler Yapalım",
+        collabDesc: "Ekibiniz için yetenekli bir Full Stack yazılımcı arıyorsanız veya yeni bir projeye başlıyorsanız hemen iletişime geçin.",
+        btnTelegram: "Telegram'dan Yaz",
+        btnCall: "Telefonla Ara",
+        footerRights: "Tüm hakları saklıdır.",
+        backToTop: "Yukarı Çık ↑",
+      }
+    };
+
+    /* ==========================================================================
+       I18N LANGUAGE CONTROLLER
+       ========================================================================== */
+    let currentLang = CONFIG.defaultLanguage;
+
+    function applyLanguage(lang) {
+      if (!TRANSLATIONS[lang]) return;
+      currentLang = lang;
+      document.documentElement.setAttribute('lang', lang);
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (TRANSLATIONS[lang][key]) {
+          el.innerHTML = TRANSLATIONS[lang][key];
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+
+      try {
+        localStorage.setItem('portfolio_lang', lang);
+      } catch (e) {}
+    }
+
+    // Initialize Language
+    try {
+      const savedLang = localStorage.getItem('portfolio_lang');
+      if (savedLang && TRANSLATIONS[savedLang]) {
+        currentLang = savedLang;
+      }
+    } catch (e) {}
+    applyLanguage(currentLang);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        applyLanguage(lang);
+      });
+    });
+
+    /* ==========================================================================
+       THEME CONTROLLER (Dark / Light)
+       ========================================================================== */
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const htmlEl = document.documentElement;
+
+    function setTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      try {
+        localStorage.setItem('portfolio_theme', theme);
+      } catch (e) {}
+      if (window.updateSceneTheme) {
+        window.updateSceneTheme(theme);
+      }
+    }
+
+    try {
+      const savedTheme = localStorage.getItem('portfolio_theme') || 'dark';
+      setTheme(savedTheme);
+    } catch (e) {
+      setTheme('dark');
+    }
+
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        const current = htmlEl.getAttribute('data-theme') || 'dark';
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    }
+
+    /* ==========================================================================
+       LENIS SMOOTH SCROLL & SCROLL PROGRESS
+       ========================================================================== */
+    let lenis = null;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
+      lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      if (typeof ScrollTrigger !== 'undefined') {
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
+    }
+
+    // Scroll progress bar & header hide/reveal
+    const scrollProgressBar = document.getElementById('scroll-progress');
+    const siteHeader = document.getElementById('siteHeader');
+    let lastScrollY = 0;
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      if (scrollProgressBar) scrollProgressBar.style.width = scrolled + '%';
+
+      if (siteHeader) {
+        if (winScroll > 120 && winScroll > lastScrollY) {
+          siteHeader.classList.add('nav-hidden');
+        } else {
+          siteHeader.classList.remove('nav-hidden');
+        }
+      }
+      lastScrollY = winScroll;
+    }, { passive: true });
+
+    // Back to top smoothly
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', () => {
+        if (lenis) {
+          lenis.scrollTo(0);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+
+    /* ==========================================================================
+       THREE.JS WEBGL BACKGROUND SCENE (PARTICLES & 3D MESH)
+       ========================================================================== */
+    (function initThreeScene() {
+      const canvas = document.getElementById('webgl-canvas');
+      if (!canvas || typeof THREE === 'undefined') return;
+
+      let renderer, scene, camera;
+      let particleSystem, particlePositions;
+      let lineMesh, lineGeometry;
+      let coreMesh;
+      let mouseX = 0, mouseY = 0;
+      let targetX = 0, targetY = 0;
+      let isVisible = true;
+
+      const isMobile = window.innerWidth < 768;
+      const particleCount = isMobile ? CONFIG.particles.countMobile : CONFIG.particles.countDesktop;
+
+      try {
+        renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          alpha: true,
+          antialias: true,
+          powerPreference: 'high-performance'
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
+        camera.position.z = 240;
+
+        // Ambient & Point Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(CONFIG.theme.darkAccent, 2.5, 450);
+        pointLight.position.set(60, 60, 100);
+        scene.add(pointLight);
+
+        // 3D Geometric Mesh (Wireframe Icosahedron)
+        const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+        const accentHex = currentTheme === 'light' ? CONFIG.theme.lightAccent : CONFIG.theme.darkAccent;
+
+        const geom = new THREE.IcosahedronGeometry(CONFIG.mesh.radius, CONFIG.mesh.detail);
+        const mat = new THREE.MeshStandardMaterial({
+          color: accentHex,
+          wireframe: true,
+          wireframeLinewidth: 1.5,
+          roughness: 0.3,
+          metalness: 0.8
+        });
+        coreMesh = new THREE.Mesh(geom, mat);
+        coreMesh.position.set(45, 0, 0);
+        scene.add(coreMesh);
+
+        // Particle Constellation Network
+        const particlesGeom = new THREE.BufferGeometry();
+        particlePositions = new Float32Array(particleCount * 3);
+        const particleVelocities = [];
+
+        for (let i = 0; i < particleCount; i++) {
+          const x = (Math.random() - 0.5) * 400;
+          const y = (Math.random() - 0.5) * 300;
+          const z = (Math.random() - 0.5) * 200;
+
+          particlePositions[i * 3] = x;
+          particlePositions[i * 3 + 1] = y;
+          particlePositions[i * 3 + 2] = z;
+
+          particleVelocities.push({
+            vx: (Math.random() - 0.5) * CONFIG.particles.moveSpeed,
+            vy: (Math.random() - 0.5) * CONFIG.particles.moveSpeed,
+            vz: (Math.random() - 0.5) * CONFIG.particles.moveSpeed
+          });
+        }
+
+        particlesGeom.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+        const particleMat = new THREE.PointsMaterial({
+          color: accentHex,
+          size: 3.2,
+          transparent: true,
+          opacity: 0.75
+        });
+        particleSystem = new THREE.Points(particlesGeom, particleMat);
+        scene.add(particleSystem);
+
+        // Connecting Lines
+        const maxLines = particleCount * 6;
+        const linePositions = new Float32Array(maxLines * 6);
+        lineGeometry = new THREE.BufferGeometry();
+        lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+
+        const lineMaterial = new THREE.LineSegments({
+          vertexColors: false,
+          color: CONFIG.theme.lineColor,
+          transparent: true,
+          opacity: 0.25
+        });
+        lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+        scene.add(lineMesh);
+
+        // Handle Theme Changes smoothly
+        window.updateSceneTheme = function(theme) {
+          const newColor = theme === 'light' ? CONFIG.theme.lightAccent : CONFIG.theme.darkAccent;
+          pointLight.color.setHex(newColor);
+          mat.color.setHex(newColor);
+          particleMat.color.setHex(newColor);
+        };
+
+        // Mouse Parallax movement
+        window.addEventListener('mousemove', (e) => {
+          mouseX = (e.clientX - window.innerWidth / 2) * 0.08;
+          mouseY = (e.clientY - window.innerHeight / 2) * 0.08;
+        }, { passive: true });
+
+        // ScrollTrigger Camera Animations
+        if (typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+          ScrollTrigger.create({
+            trigger: "#experience",
+            start: "top bottom",
+            end: "bottom top",
+            onUpdate: (self) => {
+              if (coreMesh) {
+                coreMesh.position.x = 45 - self.progress * 90;
+                coreMesh.rotation.y = self.progress * Math.PI * 2;
+              }
+            }
+          });
+
+          ScrollTrigger.create({
+            trigger: "#projects",
+            start: "top bottom",
+            end: "bottom top",
+            onUpdate: (self) => {
+              camera.position.z = 240 + Math.sin(self.progress * Math.PI) * 40;
+            }
+          });
+        }
+
+        // Animation Loop with Visibility optimization
+        document.addEventListener('visibilitychange', () => {
+          isVisible = document.visibilityState === 'visible';
+        });
+
+        function animate() {
+          requestAnimationFrame(animate);
+          if (!isVisible) return;
+
+          // Parallax lerp
+          targetX += (mouseX - targetX) * CONFIG.lerpSpeed;
+          targetY += (mouseY - targetY) * CONFIG.lerpSpeed;
+          camera.position.x = targetX * 0.4;
+          camera.position.y = -targetY * 0.4;
+          camera.lookAt(0, 0, 0);
+
+          // Rotate central core
+          if (coreMesh) {
+            coreMesh.rotation.x += CONFIG.mesh.rotationSpeed;
+            coreMesh.rotation.y += CONFIG.mesh.rotationSpeed * 1.3;
+          }
+
+          // Move particles & update lines
+          const pos = particleSystem.geometry.attributes.position.array;
+          let lineIdx = 0;
+          const linePos = lineGeometry.attributes.position.array;
+
+          for (let i = 0; i < particleCount; i++) {
+            pos[i * 3] += particleVelocities[i].vx;
+            pos[i * 3 + 1] += particleVelocities[i].vy;
+            pos[i * 3 + 2] += particleVelocities[i].vz;
+
+            // Bounce boundaries
+            if (pos[i * 3] < -200 || pos[i * 3] > 200) particleVelocities[i].vx *= -1;
+            if (pos[i * 3 + 1] < -150 || pos[i * 3 + 1] > 150) particleVelocities[i].vy *= -1;
+            if (pos[i * 3 + 2] < -100 || pos[i * 3 + 2] > 100) particleVelocities[i].vz *= -1;
+
+            // Connect nearby points
+            for (let j = i + 1; j < particleCount; j++) {
+              const dx = pos[i * 3] - pos[j * 3];
+              const dy = pos[i * 3 + 1] - pos[j * 3 + 1];
+              const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
+              const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+              if (dist < CONFIG.particles.maxDistance && lineIdx < maxLines * 6 - 6) {
+                linePos[lineIdx++] = pos[i * 3];
+                linePos[lineIdx++] = pos[i * 3 + 1];
+                linePos[lineIdx++] = pos[i * 3 + 2];
+                linePos[lineIdx++] = pos[j * 3];
+                linePos[lineIdx++] = pos[j * 3 + 1];
+                linePos[lineIdx++] = pos[j * 3 + 2];
+              }
+            }
+          }
+
+          particleSystem.geometry.attributes.position.needsUpdate = true;
+          lineGeometry.setDrawRange(0, lineIdx / 3);
+          lineGeometry.attributes.position.needsUpdate = true;
+
+          renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Responsive Resize
+        window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        });
+
+      } catch (err) {
+        console.warn("WebGL initialization skipped:", err);
+      }
+    })();
+
+    /* ==========================================================================
+       GSAP ANIMATIONS & PRELOADER TIMELINE
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      const preloader = document.getElementById('preloader');
+      const preloaderBar = document.getElementById('preloaderBar');
+      const preloaderPercent = document.getElementById('preloaderPercent');
+      const shutterTop = document.getElementById('shutterTop');
+      const shutterBottom = document.getElementById('shutterBottom');
+      const preloaderContent = document.getElementById('preloaderContent');
+
+      // Preloader Loading Simulation
+      let progress = { val: 0 };
+      const preloaderTL = gsap.timeline();
+
+      preloaderTL.to(progress, {
+        val: 100,
+        duration: 1.4,
+        ease: "power2.out",
+        onUpdate: () => {
+          const p = Math.round(progress.val);
+          if (preloaderPercent) preloaderPercent.innerText = p + '%';
+          if (preloaderBar) preloaderBar.style.width = p + '%';
+        }
+      })
+      .to(preloaderContent, {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.35,
+        ease: "power2.in"
+      })
+      .to(shutterTop, {
+        transform: "translateY(-100%)",
+        duration: 0.75,
+        ease: "power4.inOut"
+      }, "-=0.1")
+      .to(shutterBottom, {
+        transform: "translateY(100%)",
+        duration: 0.75,
+        ease: "power4.inOut",
+        onComplete: () => {
+          if (preloader) preloader.style.display = 'none';
+        }
+      }, "<")
+      .from(".hero-name", {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+      }, "-=0.3")
+      .from(".status-pill, .hero-title-badge, .hero-slogan", {
+        y: 25,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.7,
+        ease: "power3.out"
+      }, "-=0.5")
+      .from(".hero-cta .btn", {
+        scale: 0.85,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.5,
+        ease: "back.out(1.7)"
+      }, "-=0.4")
+      .from(".avatar-3d-card", {
+        scale: 0.6,
+        rotationY: 90,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.5)"
+      }, "-=0.6");
+
+      // ScrollTrigger Animations
+      if (typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+        // Section Headers
+        gsap.utils.toArray('.section-header').forEach(header => {
+          gsap.from(header, {
+            scrollTrigger: {
+              trigger: header,
+              start: "top 85%",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out"
+          });
+        });
+
+        // About & Stats
+        gsap.from(".about-card", {
+          scrollTrigger: { trigger: "#about", start: "top 80%" },
+          x: -40,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out"
+        });
+
+        gsap.from(".stat-card", {
+          scrollTrigger: { trigger: "#about", start: "top 80%" },
+          x: 40,
+          opacity: 0,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: "power3.out"
+        });
+
+        // Numerical Counter Animation
+        document.querySelectorAll('[data-counter]').forEach(counterEl => {
+          const target = parseFloat(counterEl.getAttribute('data-counter'));
+          const hasPlus = counterEl.innerText.includes('+');
+          ScrollTrigger.create({
+            trigger: counterEl,
+            start: "top 85%",
+            once: true,
+            onEnter: () => {
+              gsap.fromTo(counterEl, 
+                { innerText: 0 },
+                {
+                  innerText: target,
+                  duration: 1.6,
+                  ease: "power2.out",
+                  snap: { innerText: 1 },
+                  onUpdate: function() {
+                    counterEl.innerText = Math.round(this.targets()[0].innerText) + (hasPlus ? '+' : '');
+                  }
+                }
+              );
+            }
+          });
+        });
+
+        // Timeline items
+        gsap.utils.toArray('.timeline-card-item').forEach(item => {
+          gsap.from(item, {
+            scrollTrigger: {
+              trigger: item,
+              start: "top 85%",
+            },
+            y: 35,
+            opacity: 0,
+            duration: 0.75,
+            ease: "power3.out"
+          });
+        });
+
+        // Timeline SVG Progress Line scrub
+        const progressLine = document.getElementById('timelineProgressLine');
+        if (progressLine) {
+          ScrollTrigger.create({
+            trigger: ".timeline-wrap",
+            start: "top 70%",
+            end: "bottom 75%",
+            scrub: true,
+            onUpdate: (self) => {
+              progressLine.setAttribute('y2', (self.progress * 1000).toString());
+            }
+          });
+        }
+
+        // Skills badge chip scatter to place
+        gsap.from(".badge-chip", {
+          scrollTrigger: {
+            trigger: "#skills",
+            start: "top 80%",
+          },
+          scale: 0.8,
+          opacity: 0,
+          y: 20,
+          stagger: 0.03,
+          duration: 0.5,
+          ease: "back.out(1.5)"
+        });
+
+        // Project Cards
+        gsap.from(".project-card", {
+          scrollTrigger: {
+            trigger: "#projects",
+            start: "top 80%",
+          },
+          y: 40,
+          opacity: 0,
+          stagger: 0.12,
+          duration: 0.7,
+          ease: "power3.out"
+        });
+
+        // Education Cards
+        gsap.from(".edu-card", {
+          scrollTrigger: {
+            trigger: "#education",
+            start: "top 80%",
+          },
+          y: 30,
+          opacity: 0,
+          stagger: 0.15,
+          duration: 0.7,
+          ease: "power3.out"
+        });
+
+        // Contact Cards
+        gsap.from(".contact-info-card", {
+          scrollTrigger: {
+            trigger: "#contact",
+            start: "top 80%",
+          },
+          y: 30,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 0.6,
+          ease: "power3.out"
+        });
+      }
+    });
+
+    /* ==========================================================================
+       CURSOR FOLLOWER & MAGNETIC BUTTONS
+       ========================================================================== */
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    let mousePos = { x: -100, y: -100 };
+    let ringPos = { x: -100, y: -100 };
+
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+        if (cursorDot) {
+          cursorDot.style.opacity = '1';
+          cursorDot.style.left = mousePos.x + 'px';
+          cursorDot.style.top = mousePos.y + 'px';
+        }
+        if (cursorRing) {
+          cursorRing.style.opacity = '1';
+        }
+      });
+
+      function renderCursorRing() {
+        ringPos.x += (mousePos.x - ringPos.x) * 0.18;
+        ringPos.y += (mousePos.y - ringPos.y) * 0.18;
+        if (cursorRing) {
+          cursorRing.style.left = ringPos.x + 'px';
+          cursorRing.style.top = ringPos.y + 'px';
+        }
+        requestAnimationFrame(renderCursorRing);
+      }
+      requestAnimationFrame(renderCursorRing);
+
+      // Magnetic & Cursor Expand on Interactive Elements
+      const interactives = document.querySelectorAll('a, button, .magnetic-btn, .project-card, .contact-info-card');
+      interactives.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          if (cursorRing) cursorRing.classList.add('active');
+        });
+        el.addEventListener('mouseleave', () => {
+          if (cursorRing) cursorRing.classList.remove('active');
+          el.style.transform = '';
+        });
+
+        if (el.classList.contains('magnetic-btn')) {
+          el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const relX = e.clientX - rect.left - rect.width / 2;
+            const relY = e.clientY - rect.top - rect.height / 2;
+            el.style.transform = `translate(${relX * 0.22}px, ${relY * 0.22}px)`;
+          });
+        }
+      });
+    }
+
+    /* ==========================================================================
+       3D TILT EFFECT FOR CARDS (AVATAR & PROJECTS)
+       ========================================================================== */
+    const avatarCard = document.getElementById('avatarCard');
+    if (avatarCard) {
+      avatarCard.addEventListener('mousemove', (e) => {
+        const rect = avatarCard.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        avatarCard.style.transform = `perspective(600px) rotateX(${-y * 0.15}deg) rotateY(${x * 0.15}deg) scale3d(1.04, 1.04, 1.04)`;
+      });
+      avatarCard.addEventListener('mouseleave', () => {
+        avatarCard.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    }
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        card.style.transform = `perspective(800px) rotateX(${-y * 0.05}deg) rotateY(${x * 0.05}deg) translateY(-5px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      });
+    });
+
+    /* ==========================================================================
+       COPY TO CLIPBOARD TOOLTIPS
+       ========================================================================== */
+    document.querySelectorAll('.copyable').forEach(card => {
+      card.addEventListener('click', () => {
+        const text = card.getAttribute('data-copy');
+        if (text) {
+          navigator.clipboard.writeText(text).then(() => {
+            const toast = card.querySelector('.copy-toast');
+            if (toast) {
+              toast.classList.add('show');
+              setTimeout(() => toast.classList.remove('show'), 1600);
+            }
+          });
+        }
+      });
+    });
+
+    /* ==========================================================================
+       DOWNLOAD RESUME ACTION & PRINT STATE
+       ========================================================================== */
+    const downloadCvBtn = document.getElementById('downloadCvBtn');
+    const downloadBtnText = document.getElementById('downloadBtnText');
+
+    if (downloadCvBtn) {
+      downloadCvBtn.addEventListener('click', () => {
+        const origText = downloadBtnText.innerText;
+        downloadBtnText.innerText = "Preparing PDF... ✓";
+        setTimeout(() => {
+          window.print();
+          downloadBtnText.innerText = origText;
+        }, 400);
+      });
+    }
+
+    /* ==========================================================================
+       MOBILE DRAWER NAVIGATION
+       ========================================================================== */
+    const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const hamburgerIcon = document.getElementById('hamburgerIcon');
+    const closeIcon = document.getElementById('closeIcon');
+
+    function toggleMobileMenu(open) {
+      const isOpen = typeof open === 'boolean' ? open : !mobileDrawer.classList.contains('open');
+      if (isOpen) {
+        mobileDrawer.classList.add('open');
+        hamburgerIcon.style.display = 'none';
+        closeIcon.style.display = 'block';
+      } else {
+        mobileDrawer.classList.remove('open');
+        hamburgerIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+      }
+    }
+
+    if (mobileToggleBtn && mobileDrawer) {
+      mobileToggleBtn.addEventListener('click', () => toggleMobileMenu());
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => toggleMobileMenu(false));
+      });
+    }
+
+    /* ==========================================================================
+       ACTIVE NAV LINK OBSERVER
+       ========================================================================== */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+
+    window.addEventListener('scroll', () => {
+      let currentId = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 140;
+        if (window.scrollY >= sectionTop) {
+          currentId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentId) {
+          link.classList.add('active');
+        }
+      });
+    }, { passive: true });
+
+  </script>
+</body>
+</html>

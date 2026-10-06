@@ -45,10 +45,10 @@ export const EducationSectionDOM: React.FC = () => {
   return (
     <section
       id="education"
-      className="relative min-h-screen flex flex-col justify-center px-8 md:px-20 max-w-6xl mx-auto py-28 z-20 pointer-events-auto select-none"
+      className="relative min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-20 max-w-6xl mx-auto py-20 sm:py-28 z-20 pointer-events-auto select-none"
     >
       {/* Section Header */}
-      <div className="space-y-4 mb-16">
+      <div className="space-y-3 sm:space-y-4 mb-10 sm:mb-16">
         <div className="flex items-center gap-3">
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400 px-3 py-1 rounded-full border border-cyan-400/30 bg-slate-900/60 backdrop-blur-md">
             [ 06 / 07 ] — TA‘LIM VA MALAKA
@@ -69,9 +69,9 @@ export const EducationSectionDOM: React.FC = () => {
               y: 0,
               opacity: 1,
             }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-7xl font-extrabold text-white font-heading tracking-tight"
+            className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-white font-heading tracking-tight"
           >
             Nextin IT Academy{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
@@ -83,16 +83,16 @@ export const EducationSectionDOM: React.FC = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-slate-400 text-base md:text-xl font-light max-w-2xl"
+          className="text-slate-400 text-sm sm:text-base md:text-xl font-light max-w-2xl"
         >
           Doimiy o‘sish, mustahkam poydevor va ilg‘or texnologiyalarni chuqur o‘rganish yo‘li:
         </motion.p>
       </div>
 
       {/* Education Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         {EDUCATION_DATA.map((item, idx) => (
           <motion.div
             key={item.id}

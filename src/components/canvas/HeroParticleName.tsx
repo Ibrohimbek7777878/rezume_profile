@@ -28,10 +28,16 @@ export function HeroParticleName() {
     ctx.fillRect(0, 0, width, height);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = '900 88px "Manrope", "Inter", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('IBROHIM SULTONOV', width / 2, height / 2);
+    const scale = isMobile ? 0.012 : 0.024;
+
+    if (isMobile) {
+      ctx.font = '900 80px "Manrope", "Inter", sans-serif';
+      ctx.fillText('IBROHIM', width / 2, height / 2 - 50);
+      ctx.fillText('SULTONOV', width / 2, height / 2 + 50);
+    } else {
+      ctx.font = '900 88px "Manrope", "Inter", sans-serif';
+      ctx.fillText('IBROHIM SULTONOV', width / 2, height / 2);
+    }
 
     const imgData = ctx.getImageData(0, 0, width, height);
     const validPixels: { x: number; y: number }[] = [];
@@ -42,8 +48,8 @@ export function HeroParticleName() {
         const index = (y * width + x) * 4;
         if (imgData.data[index] > 140) {
           validPixels.push({
-            x: (x - width / 2) * 0.024,
-            y: -(y - height / 2) * 0.024,
+            x: (x - width / 2) * scale,
+            y: -(y - height / 2) * scale,
           });
         }
       }

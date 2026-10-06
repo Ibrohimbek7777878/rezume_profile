@@ -70,6 +70,7 @@ function HolographicGlassPanel({ position, color }: HolographicPanelProps) {
 }
 
 export function ExperienceTunnel() {
+  const groupRef = useRef<THREE.Group>(null);
   const sparkRef = useRef<THREE.Mesh>(null);
 
   const tunnelLine = useMemo(() => {
@@ -82,7 +83,7 @@ export function ExperienceTunnel() {
     return new THREE.CatmullRomCurve3(pts);
   }, []);
 
-  useFrame(() => {
+  useFrame((state, delta) => {
     const progress = useStore.getState().scrollProgress;
     // Map experience section progress (around 0.22 to 0.46)
     const expProgress = THREE.MathUtils.clamp((progress - 0.22) / 0.24, 0, 1);
@@ -91,10 +92,16 @@ export function ExperienceTunnel() {
       const pt = tunnelLine.getPointAt(expProgress);
       sparkRef.current.position.copy(pt);
     }
+
+    if (groupRef.current) {
+      const isMobile = state.viewport.aspect < 1.0;
+      const targetScale = isMobile ? 0.65 : 1.0;
+      groupRef.current.scale.setScalar(THREE.MathUtils.damp(groupRef.current.scale.x, targetScale, 4, delta));
+    }
   });
 
   return (
-    <group position={[0, -26, 0]}>
+    <group ref={groupRef} position={[0, -26, 0]}>
       {/* 3D Holographic Frames at Depth Stations */}
       <HolographicGlassPanel position={[-2.2, 1.2, 4]} color="#38bdf8" />
       <HolographicGlassPanel position={[2.6, -1.8, -6]} color="#8b5cf6" />

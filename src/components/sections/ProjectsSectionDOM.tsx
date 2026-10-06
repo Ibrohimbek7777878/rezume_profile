@@ -199,8 +199,8 @@ export const ProjectsSectionDOM: React.FC = () => {
       </div>
 
       {/* Top Header Tag */}
-      <div className="absolute top-8 left-8 md:left-20 z-30 flex items-center gap-4">
-        <span className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400 px-3 py-1 rounded-full border border-cyan-400/30 bg-slate-900/60 backdrop-blur-md">
+      <div className="absolute top-4 sm:top-8 left-4 sm:left-8 md:left-20 z-30 flex items-center gap-3 sm:gap-4">
+        <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-cyan-400 px-2.5 sm:px-3 py-1 rounded-full border border-cyan-400/30 bg-slate-900/60 backdrop-blur-md">
           [ 05 / 07 ] — PRODUCTION ARCHIVE
         </span>
         <span className="hidden md:inline-block text-xs text-slate-400 font-mono">
@@ -211,23 +211,23 @@ export const ProjectsSectionDOM: React.FC = () => {
       {/* Horizontal Track of Project Cards */}
       <div
         ref={trackRef}
-        className="flex h-full items-center pl-8 md:pl-20 pr-40 gap-8 md:gap-14 will-change-transform"
+        className="flex h-full items-center pl-4 sm:pl-8 md:pl-20 pr-16 sm:pr-28 md:pr-40 gap-4 sm:gap-8 md:gap-14 will-change-transform pt-12 sm:pt-0"
       >
         {/* Intro Card */}
-        <div className="flex-shrink-0 w-[300px] md:w-[380px] space-y-6">
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white font-heading tracking-tight leading-tight">
+        <div className="flex-shrink-0 w-[260px] sm:w-[320px] md:w-[380px] space-y-4 sm:space-y-6">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white font-heading tracking-tight leading-tight">
             Amaliy <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-violet-400">
               Loyihalar
             </span>
           </h2>
-          <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+          <p className="text-slate-400 text-xs sm:text-sm md:text-base leading-relaxed">
             Real foydalanuvchilar, korxonalar va mebel ishlab chiqaruvchilar uchun yaratilgan to‘liq siklli raqamli mahsulotlar:
             arxitekturadan tortib mobil ilova va online to‘lovlargacha.
           </p>
-          <div className="pt-2 flex items-center gap-3 text-xs font-mono text-cyan-400">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>O‘ng tomonga skroll qiling →</span>
+          <div className="pt-2 flex items-center gap-2 text-xs font-mono text-cyan-400">
+            <span className="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span>Skroll qiling →</span>
           </div>
         </div>
 
@@ -237,7 +237,7 @@ export const ProjectsSectionDOM: React.FC = () => {
             key={proj.id}
             data-cursor="Ko‘rish"
             onClick={() => window.open(proj.url, '_blank')}
-            className={`group relative flex-shrink-0 w-[340px] sm:w-[420px] md:w-[480px] h-[580px] md:h-[620px] rounded-3xl p-8 flex flex-col justify-between transition-all duration-500 backdrop-blur-xl border border-slate-700/60 bg-gradient-to-b ${proj.colorScheme.gradient} hover:bg-slate-900/80 ${proj.colorScheme.border} ${proj.colorScheme.glow} shadow-2xl cursor-pointer`}
+            className={`group relative flex-shrink-0 w-[84vw] max-w-[320px] sm:max-w-[400px] md:max-w-[480px] h-[510px] sm:h-[560px] md:h-[620px] rounded-3xl p-5 sm:p-7 md:p-8 flex flex-col justify-between transition-all duration-500 backdrop-blur-xl border border-slate-700/60 bg-gradient-to-b ${proj.colorScheme.gradient} hover:bg-slate-900/80 ${proj.colorScheme.border} ${proj.colorScheme.glow} shadow-2xl cursor-pointer`}
           >
             {/* Top Bar inside card */}
             <div className="space-y-4">

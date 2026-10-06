@@ -102,7 +102,7 @@ export const Navbar: React.FC = () => {
       <motion.header
         animate={{ y: isHidden ? -100 : 0 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-12 py-4 pointer-events-none select-none"
+        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 sm:px-6 md:px-12 py-3 sm:py-4 pointer-events-none select-none"
       >
         {/* Brand / Logo */}
         <div
@@ -229,9 +229,9 @@ export const Navbar: React.FC = () => {
             animate={{ clipPath: 'circle(150% at calc(100% - 32px) 32px)' }}
             exit={{ clipPath: 'circle(0% at calc(100% - 32px) 32px)' }}
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-navy-950/98 backdrop-blur-2xl flex flex-col justify-between p-8 md:p-14 lg:hidden pointer-events-auto"
+            className="fixed inset-0 z-40 bg-navy-950/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:p-14 lg:hidden pointer-events-auto overflow-y-auto"
           >
-            <div className="pt-20 space-y-6">
+            <div className="pt-16 sm:pt-20 space-y-4 sm:space-y-6">
               <span className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400 block">
                 NAVIGATSIYA
               </span>

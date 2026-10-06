@@ -244,10 +244,23 @@ export const PhoneMockup3D: React.FC = () => {
     const time = state.clock.getElapsedTime();
     phoneRef.current.position.y = Math.sin(time * 1.8) * 0.25;
 
+    // Responsive positioning and scaling for mobile portrait vs desktop
+    if (groupRef.current) {
+      const isMobile = state.viewport.aspect < 1.0;
+      const targetX = isMobile ? 0 : 4.5;
+      const targetZ = isMobile ? 0 : 2;
+      const targetScale = isMobile ? 0.65 : 1.0;
+      groupRef.current.position.x = THREE.MathUtils.damp(groupRef.current.position.x, targetX, 4, delta);
+      groupRef.current.position.z = THREE.MathUtils.damp(groupRef.current.position.z, targetZ, 4, delta);
+      const currScale = groupRef.current.scale.x;
+      groupRef.current.scale.setScalar(THREE.MathUtils.damp(currScale, targetScale, 4, delta));
+    }
+
     // Orbiting / hovering Google Play badge
     if (badgeRef.current) {
-      badgeRef.current.position.y = Math.sin(time * 2.2 + 1.0) * 0.35 + 2.8;
-      badgeRef.current.position.x = 3.6 + Math.cos(time * 1.4) * 0.25;
+      const isMobile = state.viewport.aspect < 1.0;
+      badgeRef.current.position.y = Math.sin(time * 2.2 + 1.0) * 0.35 + (isMobile ? 3.6 : 2.8);
+      badgeRef.current.position.x = (isMobile ? 0 : 3.6) + Math.cos(time * 1.4) * 0.25;
       badgeRef.current.rotation.y = -Math.sin(time * 1.2) * 0.15;
     }
   });

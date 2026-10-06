@@ -24,23 +24,23 @@ export const HeroSectionDOM: React.FC = () => {
         </span>
       </div>
 
-      {/* 2. Space reserved for the 40,000 GPU particle name: "IBROHIM SULTONOV"
-          The 3D points in R3F canvas render right here in world coordinates [0, 0.5, 0] */}
-      <div className="h-32 md:h-44 w-full max-w-4xl flex items-center justify-center">
-        {/* Screen reader only text for full accessibility and SEO */}
-        <h1 className="sr-only">Ibrohim Sultonov — Senior Full Stack Developer</h1>
+      {/* 2. Primary Headline Name: "IBROHIM SULTONOV" */}
+      <div className="w-full max-w-4xl flex items-center justify-center my-3 sm:my-5 pointer-events-auto">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black font-heading tracking-tight leading-tight uppercase text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 drop-shadow-[0_4px_24px_rgba(56,189,248,0.25)] select-none">
+          IBROHIM SULTONOV
+        </h1>
       </div>
 
       {/* 3. Subtitle with 3D rotateX entrance and hover scramble */}
-      <div className="pointer-events-auto mt-2 mb-6">
+      <div className="pointer-events-auto mt-1 mb-6">
         <ScrambleTitle
           text={t.heroRole}
-          className="text-2xl md:text-5xl font-extrabold tracking-tight font-heading"
+          className="text-xl sm:text-3xl md:text-5xl font-extrabold tracking-tight font-heading"
         />
       </div>
 
       {/* Location Chip */}
-      <div className="pointer-events-auto inline-flex items-center gap-2 text-slate-400 text-sm md:text-base font-light mb-10">
+      <div className="pointer-events-auto inline-flex items-center gap-2 text-slate-400 text-xs sm:text-base font-light mb-8">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
           <circle cx="12" cy="10" r="3" />
@@ -49,12 +49,12 @@ export const HeroSectionDOM: React.FC = () => {
       </div>
 
       {/* 4. Magnetic Action Buttons with Inner Click Ripple */}
-      <div className="pointer-events-auto flex flex-wrap items-center justify-center gap-5">
+      <div className="pointer-events-auto flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4">
         <MagneticButton
           href="#contact"
           variant="primary"
           cursorText="Yozish"
-          className="px-8 py-4"
+          className="w-full sm:w-auto px-7 py-3.5 sm:py-4 text-center justify-center"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />

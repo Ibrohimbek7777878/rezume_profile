@@ -142,17 +142,23 @@ function OrbitingChip({ item }: { item: TechItem }) {
 
 export function SkillsOrbitSystem() {
   const coreRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     if (coreRef.current) {
       coreRef.current.rotation.y += delta * 0.5;
       const scale = 1 + Math.sin(Date.now() * 0.003) * 0.08;
       coreRef.current.scale.set(scale, scale, scale);
     }
+    if (groupRef.current) {
+      const isMobile = state.viewport.aspect < 1.0;
+      const targetScale = isMobile ? 0.62 : 1.0;
+      groupRef.current.scale.setScalar(THREE.MathUtils.damp(groupRef.current.scale.x, targetScale, 4, delta));
+    }
   });
 
   return (
-    <group position={[0, -42, 0]}>
+    <group ref={groupRef} position={[0, -42, 0]}>
       {/* Central Pulsing Energy Core */}
       <mesh ref={coreRef}>
         <sphereGeometry args={[1.5, 32, 32]} />

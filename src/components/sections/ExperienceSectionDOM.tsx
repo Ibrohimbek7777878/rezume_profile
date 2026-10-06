@@ -70,10 +70,10 @@ export const ExperienceSectionDOM: React.FC = () => {
   return (
     <section
       id="experience"
-      className="min-h-screen flex flex-col justify-start px-6 md:px-20 max-w-6xl mx-auto py-28 select-none relative z-20 pointer-events-auto"
+      className="min-h-screen flex flex-col justify-start px-4 sm:px-8 md:px-20 max-w-6xl mx-auto py-20 sm:py-28 select-none relative z-20 pointer-events-auto"
     >
       {/* Section Header */}
-      <div className="space-y-4 mb-16">
+      <div className="space-y-3 sm:space-y-4 mb-10 sm:mb-16">
         <div className="flex items-center gap-3">
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400 px-3 py-1 rounded-full border border-cyan-400/30 bg-slate-900/60 backdrop-blur-md">
             [ 03 / 07 ] — KARYERA VA ISH TAJRIBASI
@@ -81,46 +81,46 @@ export const ExperienceSectionDOM: React.FC = () => {
           <div className="h-[1px] w-24 bg-gradient-to-r from-cyan-400/60 to-transparent" />
         </div>
 
-        <h2 className="text-4xl md:text-7xl font-extrabold tracking-tight text-white font-heading">
+        <h2 className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white font-heading">
           Ish{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-violet-400">
             Tajribasi
           </span>
         </h2>
-        <p className="text-slate-400 text-base md:text-xl max-w-2xl font-light">
+        <p className="text-slate-400 text-sm sm:text-base md:text-xl max-w-2xl font-light">
           Real foydalanuvchilar, korxonalar va ishlab chiqarish sohalarida amalda ishlayotgan mahsulotlar yaratish tarixi:
         </p>
       </div>
 
       {/* Vertical Interactive Timeline */}
-      <div className="relative border-l-2 border-slate-800 ml-4 md:ml-8 pl-6 md:pl-12 space-y-12">
+      <div className="relative border-l-2 border-slate-800 ml-2 sm:ml-4 md:ml-8 pl-4 sm:pl-6 md:pl-12 space-y-8 sm:space-y-12">
         {EXPERIENCES.map((exp, idx) => (
           <motion.div
             key={exp.id}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.7, delay: idx * 0.15 }}
             className="relative group"
           >
             {/* Pulsing Timeline Marker Node */}
             <div
-              className="absolute -left-[31px] md:-left-[55px] top-6 w-6 h-6 rounded-full bg-navy-950 border-2 flex items-center justify-center transition-transform group-hover:scale-125"
+              className="absolute -left-[25px] sm:-left-[31px] md:-left-[55px] top-6 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-navy-950 border-2 flex items-center justify-center transition-transform group-hover:scale-125"
               style={{ borderColor: exp.accentColor }}
             >
               <div
-                className="w-2.5 h-2.5 rounded-full"
+                className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full"
                 style={{ backgroundColor: exp.accentColor }}
               />
             </div>
 
             {/* Experience Card */}
-            <div className="rounded-3xl p-7 md:p-9 bg-slate-900/90 border border-slate-700/80 hover:border-cyan-400/60 transition-all duration-300 backdrop-blur-xl shadow-2xl space-y-6">
+            <div className="rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-9 bg-slate-900/90 border border-slate-700/80 hover:border-cyan-400/60 transition-all duration-300 backdrop-blur-xl shadow-2xl space-y-4 sm:space-y-6">
               {/* Card Header */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 border-b border-slate-800 pb-4 sm:pb-5">
                 <div>
-                  <div className="flex items-center gap-3 mb-1.5 flex-wrap">
-                    <span className="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full border border-cyan-400/30 bg-cyan-950/40 text-cyan-300 font-semibold">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-1.5 flex-wrap">
+                    <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-cyan-400/30 bg-cyan-950/40 text-cyan-300 font-semibold">
                       {exp.badge}
                     </span>
                     <span className="text-xs text-slate-400 font-mono">

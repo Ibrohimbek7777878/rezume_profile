@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { useStore } from '../../store/useStore';
 
 export const Education3DScene: React.FC = () => {
+  const rootGroupRef = useRef<THREE.Group>(null);
   const lightShaftRef = useRef<THREE.Mesh>(null);
   const emblemGroupRef = useRef<THREE.Group>(null);
   const innerCrystalRef = useRef<THREE.Mesh>(null);
@@ -27,6 +28,16 @@ export const Education3DScene: React.FC = () => {
   useFrame((state, delta) => {
     const time = state.clock.getElapsedTime();
     const scrollProgress = useStore.getState().scrollProgress;
+
+    // Responsive positioning and scale for mobile portrait
+    if (rootGroupRef.current) {
+      const isMobile = state.viewport.aspect < 1.0;
+      const targetX = isMobile ? 0 : 2.5;
+      const targetScale = isMobile ? 0.7 : 1.0;
+      rootGroupRef.current.position.x = THREE.MathUtils.damp(rootGroupRef.current.position.x, targetX, 4, delta);
+      const currScale = rootGroupRef.current.scale.x;
+      rootGroupRef.current.scale.setScalar(THREE.MathUtils.damp(currScale, targetScale, 4, delta));
+    }
 
     // 1. Slow, organic drifting of volumetric light shaft
     if (lightShaftRef.current) {
@@ -78,7 +89,7 @@ export const Education3DScene: React.FC = () => {
 
   return (
     // Positioned at Education section coordinates (y = -74, lookAt = [0, -74, 0])
-    <group position={[2.5, -74, 0]}>
+    <group ref={rootGroupRef} position={[2.5, -74, 0]}>
       {/* Volumetric Soft Light Shaft (Diagonal glowing cylinder) */}
       <mesh
         ref={lightShaftRef}

@@ -159,6 +159,9 @@ export const ContactOrb3D: React.FC = () => {
     currentColor.current.lerp(targetColor.current, delta * 5.0);
 
     if (orbGroupRef.current) {
+      const isMobile = state.viewport.aspect < 1.0;
+      const targetScale = isMobile ? 0.65 : 1.0;
+      orbGroupRef.current.scale.setScalar(THREE.MathUtils.damp(orbGroupRef.current.scale.x, targetScale, 4, delta));
       orbGroupRef.current.position.lerp(targetOrbPos.current, delta * 4.5);
       orbGroupRef.current.rotation.y = time * 0.45;
       orbGroupRef.current.rotation.x = Math.sin(time * 0.3) * 0.15;

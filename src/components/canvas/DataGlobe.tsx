@@ -101,6 +101,16 @@ export function DataGlobe() {
   useFrame((state, delta) => {
     if (!groupRef.current) return;
 
+    // Responsive positioning and scaling for mobile portrait vs desktop
+    const isMobile = state.viewport.aspect < 1.0;
+    const targetX = isMobile ? 0 : 3.8;
+    const targetZ = isMobile ? -2 : 0;
+    const targetScale = isMobile ? 0.72 : 1.0;
+    groupRef.current.position.x = THREE.MathUtils.damp(groupRef.current.position.x, targetX, 4, delta);
+    groupRef.current.position.z = THREE.MathUtils.damp(groupRef.current.position.z, targetZ, 4, delta);
+    const currScale = groupRef.current.scale.x;
+    groupRef.current.scale.setScalar(THREE.MathUtils.damp(currScale, targetScale, 4, delta));
+
     // Automatic slow rotation of the globe
     groupRef.current.rotation.y += delta * 0.22;
 
